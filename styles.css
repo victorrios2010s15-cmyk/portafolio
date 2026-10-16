@@ -395,55 +395,61 @@ body {
     animation: orbitar-terminal 5.5s ease-in-out infinite;
 }
 
-@keyframes escribir-linea {
-    from { width: 0; opacity: 0; }
-    to { width: 100%; opacity: 1; }
-}
 @keyframes flotar-terminal {
 0%, 100% { transform: translateY(-5px); }
 50% { transform: translateY(5px); }
 }
+
 @keyframes flotar-suave {
 0%, 100% { transform: translateY(0); }
 50% { transform: translateY(-15px); }
 }
+
 @keyframes flotar-opuesto {
 0%, 100% { transform: translateY(0) scale(1); }
 50% { transform: translateY(10px) scale(1.05); }
 }
+
 @keyframes pulso-brillo {
 0% { transform: scale(0.9); opacity: 0.6; }
 100% { transform: scale(1.1); opacity: 1; }
 }
+
 @keyframes rotar-figura {
 from { transform: rotate(0deg); }
 to { transform: rotate(360deg); }
 }
+
 @keyframes orbitar-pc {
 0%, 100% {
 transform: translateY(0) translateX(0) rotate(0deg);
 box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
 }
+
 50% {
 transform: translateY(-10px) translateX(8px) rotate(5deg);
 box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
 }
 }
+
 @keyframes orbitar-linux {
 0%, 100% {
 transform: translateY(0) translateX(0) scale(1);
 box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
 }
+
 50% {
 transform: translateY(12px) translateX(-5px) scale(1.08);
 box-shadow: 0 0 25px rgba(234, 179, 8, 0.5);
 }
 }
+
 @keyframes orbitar-terminal {
 0%, 100% {
 transform: translateY(0) translateX(0) rotate(0deg);
 box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
 }
+
 50% {
 transform: translateY(-8px) translateX(-8px) rotate(-8deg);
 box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);

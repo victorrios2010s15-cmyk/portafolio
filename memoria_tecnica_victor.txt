@@ -601,18 +601,8 @@ body {
 .info { color: #a855f7; }
 
 .terminal-body p {
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
     margin-bottom: 8px;
-    opacity: 0;
 }
-
-.line-1 { animation: escribir-linea 1s 0.5s steps(25) forwards; }
-.line-2 { animation: escribir-linea 0.8s 1.8s steps(30) forwards; color: #94a3b8; }
-.line-3 { animation: escribir-linea 1.2s 3s steps(30) forwards; }
-.line-4 { animation: escribir-linea 1s 4.5s steps(35) forwards; }
-.line-5 { animation: escribir-linea 1.2s 5.8s steps(40) forwards; }
 
 .hero-image-wrapper {
     position: relative;
