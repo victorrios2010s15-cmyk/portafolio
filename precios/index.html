@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Cotizador Cyberpunk & Métodos de Pago</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https//kit.fontawesome.com/4018d9f845.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="cotizador-container">
+        <header class="header-cotizador">
+            <h1 class="titulo-neon">CONSOLA DE COTIZACIÓN</h1>
+            <p class="sub-neon">Selecciona los módulos requeridos para tu proyecto web</p>
+        </header>
+
+        <main class="panel-interactivo">
+            <section class="opciones-servicios">
+                <h3><i class="fa-solid fa-list-check"></i> Especificaciones del Sistema</h3>
+                
+                <label class="opcion-card">
+                    <input type="checkbox" class="chk-servicio" data-precio="40" checked disabled>
+                    <span class="checkbox-custom"></span>
+                    <div class="opcion-info">
+                        <span class="opcion-titulo">Landing Page Básica (Obligatorio)</span>
+                        <span class="opcion-desc">Estructura esencial, responsive y optimizada.</span>
+                    </div>
+                    <span class="opcion-precio">$40 USD</span>
+                </label>
+
+                <label class="opcion-card">
+                    <input type="checkbox" class="chk-servicio" data-precio="15">
+                    <span class="checkbox-custom"></span>
+                    <div class="opcion-info">
+                        <span class="opcion-titulo">Diseño Adaptable Avanzado (Móviles)</span>
+                        <span class="opcion-desc">Optimización UX milimétrica para Smartphones.</span>
+                    </div>
+                    <span class="opcion-precio">+$15 USD</span>
+                </label>
+
+                <label class="opcion-card">
+                    <input type="checkbox" class="chk-servicio" data-precio="15">
+                    <span class="checkbox-custom"></span>
+                    <div class="opcion-info">
+                        <span class="opcion-titulo">Formulario de Contacto Directo</span>
+                        <span class="opcion-desc">Integración con backend de correos seguro.</span>
+                    </div>
+                    <span class="opcion-precio">+$15 USD</span>
+                </label>
+
+                <label class="opcion-card">
+                    <input type="checkbox" class="chk-servicio" data-precio="20">
+                    <span class="checkbox-custom"></span>
+                    <div class="opcion-info">
+                        <span class="opcion-titulo">Entrega Express (Prioritaria)</span>
+                        <span class="opcion-desc">Reducción del tiempo de desarrollo a la mitad.</span>
+                    </div>
+                    <span class="opcion-precio">+$20 USD</span>
+                </label>
+
+                <div class="opcion-card input-especial">
+                    <div class="opcion-info">
+                        <span class="opcion-titulo">Páginas Secundarias Adicionales</span>
+                        <span class="opcion-desc">Secciones extra como "Nosotros", "Galería", etc.</span>
+                    </div>
+                    <div class="control-numerico">
+                        <input type="number" id="num-paginas" min="0" max="10" value="0">
+                        <span class="opcion-precio-unidad">+$10 USD c/u</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel-total">
+                <div class="pantalla-total">
+                    <span class="total-label">PRESUPUESTO ESTIMADO</span>
+                    <span class="total-monto" id="total-calculado">$40 USD</span>
+                </div>
+                <button id="btn-solicitar" class="btn-accion-neon">
+                    <i class="fa-brands fa-telegram"></i> TRANSMITIR PRESUPUESTO
+                </button>
+            </section>
+        </main>
+
+        <footer class="seccion-pagos">
+            <h3><i class="fa-solid fa-credit-card"></i> Canales de Pago Autorizados</h3>
+            <div class="grid-pagos">
+                <div class="pago-card"><i class="fa-solid fa-mobile-screen-button"></i> Pago Móvil</div>
+                <div class="pago-card"><i class="fa-solid fa-coins"></i> Binance Pay</div>
+                <div class="pago-card"><i class="fa-brands fa-paypal"></i> PayPal</div>
+                <div class="pago-card"><i class="fa-solid fa-building-columns"></i> Zelle</div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
