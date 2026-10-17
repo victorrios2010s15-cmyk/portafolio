@@ -2,32 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const formulario = document.getElementById('formulario-contacto');
   const estadoFormulario = document.getElementById('estado-formulario');
 
-  // === FUNCIÓN CORREGIDA: API DE GITHUB ===
-  async function obtenerTotalProyectos() {
-    try {
-      // Apuntamos a la API de desarrollo de GitHub con tu usuario asignado
-      const respuesta = await fetch('https://github.com');
-      const datos = await respuesta.json();
-      const elementoTotal = document.getElementById('total-proyectos');
-      
-      if (elementoTotal && datos.public_repos !== undefined) {
-        elementoTotal.textContent = datos.public_repos;
-      } else {
-        if (elementoTotal) elementoTotal.textContent = 'N/A';
-      }
-    } catch (error) {
-      console.error('Error al obtener proyectos de GitHub:', error);
-      const elementoTotal = document.getElementById('total-proyectos');
-      if (elementoTotal) elementoTotal.textContent = 'N/A';
-    }
-  }
-
-  // Ejecutamos la consulta de repositorios inmediatamente al cargar la interfaz
-  obtenerTotalProyectos();
-
   if (!formulario) return;
 
-  // === CONTROLADOR DE ENVÍO DEL FORMULARIO DE CONTACTO ===
   formulario.addEventListener('submit', async function(evento) {
     evento.preventDefault();
     evento.stopPropagation();
