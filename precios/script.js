@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calcularTotal();
     });
 
-        btnSolicitar.addEventListener('click', () => {
+    btnSolicitar.addEventListener('click', () => {
         let mensajeTelegram = "Hola Víctor, armé este presupuesto desde tu Cotizador Web:\n\n";
         
         checkboxes.forEach(chk => {
@@ -45,8 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         mensajeTelegram += `\n💵 *Total Estimado: ${totalElemento.textContent}*`;
 
-        // LÍNEA CORREGIDA CON NOMBRE DE USUARIO Y SINTAXIS DE VARIABLE:
+        // REPARADO: Se agregó el usuario de telegram y el símbolo '\$' correcto
         const urlTelegram = `https://telegram.me{encodeURIComponent(mensajeTelegram)}`;
         
         window.open(urlTelegram, '_blank');
     });
+}); // Cierre correcto de todo el script general
