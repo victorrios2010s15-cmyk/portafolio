@@ -45,6 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         mensajeTelegram += `\n💵 *Total Estimado: ${totalElemento.textContent}*`;
 
-const urlTelegram = `https://telegram.me/Victor2010s{encodeURIComponent(mensajeTelegram)}`;
+        // CORRECCIÓN: Se añade el '\$' faltante y el parámetro '?text=' para enlazar el mensaje
+        const urlTelegram = `https://telegram.me{encodeURIComponent(mensajeTelegram)}`;
+        
+        // CORRECCIÓN: Se añade la instrucción para abrir la pestaña en el navegador
+        window.open(urlTelegram, '_blank');
     });
 });
