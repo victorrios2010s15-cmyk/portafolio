@@ -1,0 +1,102 @@
+================================================================================
+           RESUMEN DE PLAN DE ESTUDIO Y GUÍA DE PROYECTO FRONTEND
+================================================================================
+
+--------------------------------------------------------------------------------
+1. RUTA DE ESTUDIO PARA SER DESARROLLADOR FRONTEND
+--------------------------------------------------------------------------------
+Puntos clave a aprender en orden:
+
+[1] Fundamentos Web (¡Ya dominas la base!)
+    - HTML5 (Estructura semántica)
+    - CSS3 (Flexbox, Grid, Responsive Design)
+    - Control de versiones (Git y GitHub)
+
+[2] JavaScript Vanilla (Paso actual indispensable)
+    - Sintaxis y lógica básica (variables, condicionales, funciones)
+    - Manipulación del DOM (eventos, clases, atributos)
+    - JS Moderno ES6+ (desestructuración, arrow functions, módulos)
+    - Asincronía y APIs (JSON, fetch, async/await, try/catch)
+
+[3] Ecosistema Moderno
+    - Node.js / NPM (Manejador de paquetes)
+    - Vite (Empaquetador rápido para proyectos)
+    - Tailwind CSS (Framework de CSS utilitario)
+
+[4] Framework de UI
+    - React (Opción #1 con más demanda laboral)
+
+[5] Herramientas Profesionales
+    - TypeScript (Añade tipos estáticos a JS)
+    - Next.js (Framework Full-Stack / SSR)
+
+
+--------------------------------------------------------------------------------
+2. CÓMO TENER TU PROPIA IA PRIVADA Y GRATIS EN TU COMPUTADORA
+--------------------------------------------------------------------------------
+Requisitos recomendados: 8GB+ RAM.
+
+Pasos:
+1. Descargar e instalar Ollama desde https://ollama.com
+2. Abrir la terminal (CMD/PowerShell) y ejecutar el modelo de programación:
+   ollama run qwen2.5-coder:7b
+3. Abrir VS Code e instalar la extensión "Continue".
+4. ¡Listo! Tendrás un asistente tipo Claude/Copilot privado, gratis y offline.
+
+
+--------------------------------------------------------------------------------
+3. GUÍA PASO A PASO: CONECTAR LA API DE GITHUB A TU PORTAFOLIO
+--------------------------------------------------------------------------------
+
+URL del perfil: https://victorrios2010s15-cmyk.github.io/portafolio/
+Usuario GitHub: victorrios2010s15-cmyk
+
+PASO 1: En tu index.html
+--------------------------------------------------------------------------------
+Agrega este bloque en la sección donde quieras ver tus datos de GitHub:
+
+<div class="github-card">
+  <img id="github-avatar" src="" alt="Foto de GitHub" style="width: 80px; border-radius: 50%; display: none;">
+  <h3>Repositorios Públicos: <span id="github-repos">Cargando...</span></h3>
+  <p>Seguidores: <span id="github-followers">...</span></p>
+</div>
+
+Y al final del archivo, justo antes de la etiqueta </body>, agrega:
+<script src="script.js"></script>
+
+
+PASO 2: Crear el archivo script.js
+--------------------------------------------------------------------------------
+Crea un archivo llamado script.js en la misma carpeta del index.html y pega:
+
+const urlApi = 'https://api.github.com/users/victorrios2010s15-cmyk';
+
+async function cargarDatosGitHub() {
+  try {
+    const respuesta = await fetch(urlApi);
+    const datos = await respuesta.json();
+    
+    document.getElementById('github-repos').textContent = datos.public_repos;
+    document.getElementById('github-followers').textContent = datos.followers;
+    
+    const avatarImg = document.getElementById('github-avatar');
+    avatarImg.src = datos.avatar_url;
+    avatarImg.style.display = 'inline-block';
+
+  } catch (error) {
+    console.error('Error al cargar la API:', error);
+    document.getElementById('github-repos').textContent = 'Error al cargar';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', cargarDatosGitHub);
+
+
+PASO 3: Subir los cambios a GitHub con Git
+--------------------------------------------------------------------------------
+Abre tu terminal en la carpeta del proyecto y ejecuta:
+
+git add .
+git commit -m "Agregar conexion con API de GitHub en vivo"
+git push origin main
+================================================================================
