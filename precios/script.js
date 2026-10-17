@@ -39,30 +39,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (chk.checked || chk.disabled) {
             const nombreServicio = chk.parentElement.textContent.trim();
             const precio = parseFloat(chk.getAttribute('data-precio'));
-            serviciosSeleccionados.push(`- ${nombreServicio} ($${precio} USD)`);
+            serviciosSeleccionados.push(`• ${nombreServicio} ($${precio} USD)`);
             total += precio;
         }
     });
 
     const cantidadPaginas = parseInt(inputPaginas.value) || 0;
     if (cantidadPaginas > 0) {
-        serviciosSeleccionados.push(`- ${cantidadPaginas} Página(s) adicional(es) ($${cantidadPaginas * 10} USD)`);
+        serviciosSeleccionados.push(`• ${cantidadPaginas} Página(s) adicional(es) ($${cantidadPaginas * 10} USD)`);
         total += (cantidadPaginas * 10);
     }
 
-    // Armamos el texto del mensaje
+    // Armamos el texto del mensaje personalizado
     const mensajeText = `¡Hola Victor! Me gustaría solicitar el siguiente presupuesto:\n\n` +
                           serviciosSeleccionados.join('\n') + 
                           `\n\nTotal estimado: $${total} USD`;
 
-    // Copiamos el mensaje al portapapeles del usuario
-    navigator.clipboard.writeText(mensajeText).then(() => {
-        alert('¡Presupuesto copiado al portapapeles! Te redirigiremos a Telegram para que pegues el mensaje en el chat.');
-        // Abrimos Telegram en una nueva pestaña
-        window.open('https://t.me/Victor2010s', '_blank');
-    }).catch(err => {
-        console.error('Error al copiar al portapapeles: ', err);
-        window.open('https://t.me/Victor2010s', '_blank');
-    });
+    // Codificamos el texto para que la URL sea válida
+    const mensajeCodificado = encodeURIComponent(mensajeText);
+
+    // Enlace directo a TU perfil de Telegram pasando el texto
+    const urlTelegram = `https://t.me/Victor2010s?text=${mensajeCodificado}`;
+
+    // Abrimos tu Telegram directo en una pestaña nueva
+    window.open(urlTelegram, '_blank');
 });
 });
