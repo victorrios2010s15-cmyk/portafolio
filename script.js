@@ -4,6 +4,23 @@ const estadoFormulario = document.getElementById('estado-formulario');
 formulario.addEventListener('submit', async function(evento) {
   evento.preventDefault();
   
+  const nombre = this.querySelector('input[name="nombre"]').value.trim();
+  const correo = this.querySelector('input[name="correo"]').value.trim();
+  const mensaje = this.querySelector('textarea[name="mensaje"]').value.trim();
+
+  if (nombre === "" || correo === "" || mensaje === "") {
+    estadoFormulario.textContent = "SISTEMA ERROR: TODOS LOS CAMPOS SON OBLIGATORIOS.";
+    estadoFormulario.className = "form-status status-error";
+    return;
+  }
+
+  const expresionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!expresionCorreo.test(correo)) {
+    estadoFormulario.textContent = "SISTEMA ERROR: DIRECCIÓN DE CORREO INVÁLIDA.";
+    estadoFormulario.className = "form-status status-error";
+    return;
+  }
+
   const datosFormulario = new FormData(this);
 
   estadoFormulario.textContent = "CONECTANDO CON EL SERVIDOR...";
@@ -26,7 +43,7 @@ formulario.addEventListener('submit', async function(evento) {
       throw new Error('Error en servidor');
     }
   } catch (error) {
-    estadoFormulario.textContent = "ERROR AL ENVIAR. INTÉNTALO DE NUEVO.";
+    estadoFormulario.textContent = "ERROR DE CONEXIÓN: NO SE PUDO ENVIAR EL MENSAJE.";
     estadoFormulario.className = "form-status status-error";
   }
 });
