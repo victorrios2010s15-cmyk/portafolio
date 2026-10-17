@@ -1566,4 +1566,20 @@ body {
         gap: 20px;
         text-align: center;
     }
+
+    .main-footer {
+        flex-direction: column-reverse;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .caja-estado.caja-error, .caja-estado.caja-exito {
+        display: flex !important;
+    }
+    
+    .caja-estado {
+        padding: 12px;
+        font-size: 12px;
+        gap: 8px;
+    }
 }
