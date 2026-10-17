@@ -28,26 +28,41 @@ document.addEventListener('DOMContentLoaded', () => {
         calcularTotal();
     });
 
-    btnSolicitar.addEventListener('click', () => {
-        let mensajeTelegram = "Hola Víctor, armé este presupuesto desde tu Cotizador Web:\n\n";
-        
-        checkboxes.forEach(chk => {
-            if (chk.checked || chk.disabled) {
-                const titulo = chk.closest('.opcion-card').querySelector('.opcion-titulo').textContent;
-                mensajeTelegram += `✅ ${titulo}\n`;
-            }
-        });
+    btnSolicitar.addEventListener('click', (e) => {
+    e.preventDefault();
 
-        const paginasExtra = parseInt(inputPaginas.value) || 0;
-        if (paginasExtra > 0) {
-            mensajeTelegram += `📄 Páginas secundarias: ${paginasExtra} (+$${paginasExtra * 10} USD)\n`;
+    let total = 0;
+    let serviciosSeleccionados = [];
+
+    // Recorremos los checkboxes seleccionados
+    checkboxes.forEach(chk => {
+        if (chk.checked || chk.disabled) {
+            const nombreServicio = chk.parentElement.textContent.trim();
+            const precio = parseFloat(chk.getAttribute('data-precio'));
+            serviciosSeleccionados.push(`- ${nombreServicio} ($${precio} USD)`);
+            total += precio;
         }
-
-        mensajeTelegram += `\n💵 *Total Estimado: ${totalElemento.textContent}*`;
-
-        // REPARADO: Se agregó el usuario de telegram y el símbolo '\$' correcto
-        const urlTelegram = `https://telegram.me/Victor2010s?text=:{encodeURIComponent(mensajeTelegram)}`;
-        
-        window.open(urlTelegram, '_blank');
     });
-}); // Cierre correcto de todo el script general
+
+    const cantidadPaginas = parseInt(inputPaginas.value) || 0;
+    if (cantidadPaginas > 0) {
+        serviciosSeleccionados.push(`- ${cantidadPaginas} Página(s) adicional(es) ($${cantidadPaginas * 10} USD)`);
+        total += (cantidadPaginas * 10);
+    }
+
+    // Armamos el texto del mensaje
+    const mensajeText = `¡Hola Victor! Me gustaría solicitar el siguiente presupuesto:\n\n` +
+                          serviciosSeleccionados.join('\n') + 
+                          `\n\nTotal estimado: $${total} USD`;
+
+    // Copiamos el mensaje al portapapeles del usuario
+    navigator.clipboard.writeText(mensajeText).then(() => {
+        alert('¡Presupuesto copiado al portapapeles! Te redirigiremos a Telegram para que pegues el mensaje en el chat.');
+        // Abrimos Telegram en una nueva pestaña
+        window.open('https://t.me/Victor2010s', '_blank');
+    }).catch(err => {
+        console.error('Error al copiar al portapapeles: ', err);
+        window.open('https://t.me/Victor2010s', '_blank');
+    });
+});
+});
