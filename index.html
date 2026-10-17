@@ -213,38 +213,52 @@
         </div>
     </section>
     <section class="contact" id="contacto">
-        <div class="contact-container">
+    <div class="contact-container">
 
-            <div class="contact-title-block">
-                <span class="contact-subtitle">¿Tienes un proyecto en mente?</span>
-                <h2 class="contact-title">Contáctame</h2>
-                <div class="contact-title-line"></div>
-            </div>
-
-            <div class="contact-box">
-                <h3>¡Vamos a construir algo juntos!</h3>
-                <p>Si buscas un desarrollador creativo, te gusta mi trabajo o quieres hacerme una consulta, puedes escribirme directamente por mi canal seguro.</p>
-                
-                <div class="contact-actions">
-                    <a href="https://web.telegram.org/k/#@Victor2010s" target="_blank" class="contact-btn-main">
-                        <i class="fa-brands fa-telegram"></i> Escríbeme en Telegram
-                    </a>
-                </div>
-            </div>
-
-            <footer class="main-footer">
-                <p>© 2026 Victor Rios. Todos los derechos reservados.</p>
-                <div class="footer-socials">
-                    <a href="https://github.com/victorrios2010s15-cmyk" target="_blank" class="footer-icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="mailto:victorrios2010s15@gmail.com" class="footer-icon"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://x.com/Victor2010s" target="_blank" class="footer-icon"><i class="fa-brands fa-x-twitter"></i></a>
-                </div>
-            </footer>
-
-
+        <div class="contact-title-block">
+            <span class="contact-subtitle">¿Tienes un proyecto en mente?</span>
+            <h2 class="contact-title">Contáctame</h2>
+            <div class="contact-title-line"></div>
         </div>
-    </section>
 
+        <div class="contact-box">
+            <h3>¡Vamos a construir algo juntos!</h3>
+            <p>Si buscas un desarrollador creativo, te gusta mi trabajo o quieres hacerme una consulta, puedes escribirme directamente por mi canal seguro.</p>
+            
+            <div class="contact-actions">
+                <a href="https://t.me" target="_blank" class="contact-btn-main">
+                    <i class="fa-brands fa-telegram"></i> Escríbeme en Telegram
+                </a>
+            </div>
+
+            <form id="formulario-contacto" class="cyber-form" action="https://formspree.io/f/maeqarra" method="POST">
+                <div class="form-group">
+                    <input type="text" name="nombre" required placeholder="Tu Nombre">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="correo" required placeholder="Tu Correo Electrónico">
+                </div>
+                <div class="form-group">
+                    <textarea name="mensaje" required placeholder="Escribe tu mensaje aquí..." rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn-submit-cyber">ENVIAR AL SISTEMA</button>
+                <div id="estado-formulario" class="form-status"></div>
+            </form>
+        </div>
+
+        <footer class="main-footer">
+            <p>© 2026 Victor Rios. Todos los derechos reservados.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/victorrios2010s15-cmyk" target="_blank" class="footer-icon"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:https://web.telegram.org/k/#@Victor2010s" class="footer-icon"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://x.com/Victor2010s"" target="_blank" class="footer-icon"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </footer>
+
+    </div>
+</section>
+
+<script src="./script.js"></script>
 
 </body>
 </html>
