@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mensajeTelegram += `\n💵 *Total Estimado: ${totalElemento.textContent}*`;
 
         // REPARADO: Se agregó el usuario de telegram y el símbolo '\$' correcto
-        const urlTelegram = `https://telegram.me{encodeURIComponent(mensajeTelegram)}`;
+        const urlTelegram = `https://telegram.me/Victor2010s?text=):{encodeURIComponent(mensajeTelegram)}`;
         
         window.open(urlTelegram, '_blank');
     });
