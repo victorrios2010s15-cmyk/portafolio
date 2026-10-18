@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnSolicitar = document.getElementById('btn-solicitar');
     const btnTexto = document.getElementById('btn-texto');
     
-    // Elementos del Modal y del Cliente
     const inputNombre = document.getElementById('nombre-cliente');
     const inputContacto = document.getElementById('contacto-cliente');
     const modalExito = document.getElementById('modal-exito');
@@ -36,20 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return total;
     }
 
-    checkboxes.forEach(chk => chk.addEventListener('change', calcularTotal));
-    if (inputPaginas) inputPaginas.addEventListener('input', calcularTotal);
+    // Escuchar cambios para sumar en tiempo real
+    checkboxes.forEach(chk => {
+        chk.addEventListener('change', calcularTotal);
+    });
+
+    if (inputPaginas) {
+        inputPaginas.addEventListener('input', calcularTotal);
+    }
 
     // --- ENVIAR AL WEBHOOK DE DISCORD ---
     if (btnSolicitar) {
         btnSolicitar.addEventListener('click', (e) => {
             e.preventDefault();
 
-            // Validar que el cliente haya colocado su nombre y contacto
+            // Validar campos de texto
             const nombre = inputNombre.value.trim();
             const contacto = inputContacto.value.trim();
 
             if (!nombre || !contacto) {
-                alert('Por favor ingresa tu nombre y método de contacto para continuar.');
+                alert('Por favor completa tu Nombre y tu Correo o Discord para continuar.');
                 return;
             }
 
@@ -59,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
             checkboxes.forEach(chk => {
                 if (chk.checked) {
                     const tarjeta = chk.closest('.opcion-card');
-                    const titulo = tarjeta.querySelector('.opcion-titulo') ? tarjeta.querySelector('.opcion-titulo').textContent.trim() : "Servicio";
+                    const tituloEl = tarjeta.querySelector('.opcion-titulo');
+                    const titulo = tituloEl ? tituloEl.textContent.trim() : "Servicio";
                     const precio = parseFloat(chk.getAttribute('data-precio')) || 0;
                     
                     serviciosSeleccionados.push(`• **${titulo}** ($${precio} USD)`);
@@ -76,12 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Datos enriquecidos para Discord con la info del cliente
             const payload = {
                 username: "Bot Cotizador",
                 embeds: [
                     {
-                        title: "📥 ¡Nuevo Presupuesto con Datos de Contacto!",
+                        title: "📥 ¡Nuevo Presupuesto Solicitado!",
                         color: 5793266,
                         fields: [
                             {
@@ -119,8 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => {
                 if (response.ok) {
-                    // Mostrar modal cyberpunk en vez de alert
-                    modalExito.classList.remove('oculto');
+                    if (modalExito) {
+                        modalExito.classList.remove('oculto');
+                    } else {
+                        alert('¡Presupuesto enviado con éxito!');
+                    }
                 } else {
                     alert('Hubo un error al transmitir el presupuesto.');
                 }
@@ -136,12 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cerrar modal al hacer clic en Aceptar
-    if (btnCerrarModal) {
+    if (btnCerrarModal && modalExito) {
         btnCerrarModal.addEventListener('click', () => {
             modalExito.classList.add('oculto');
         });
     }
 
+    // Cálculo inicial
     calcularTotal();
 });
