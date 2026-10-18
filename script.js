@@ -1,80 +1,67 @@
-const discordWebhookURL = "https://discord.com/api/webhooks/1561447100405911653/p6o6LsuLKKPJ3oZ4NKzy-EiU-gCH0FkqMBpzvu86yTNwfNy_XqJEJjDcR1onVZcKHs1i";
+document.addEventListener('DOMContentLoaded', () => {
+  const formulario = document.getElementById('formulario-contacto');
+  const estadoFormulario = document.getElementById('estado-formulario');
 
-btnSolicitar.addEventListener('click', (e) => {
-    e.preventDefault();
+  if (!formulario) return;
 
-    let total = 0;
-    let serviciosSeleccionados = [];
+  formulario.addEventListener('submit', async function(evento) {
+    evento.preventDefault();
+    evento.stopPropagation();
+    
+    const nombre = formulario.querySelector('input[name="nombre"]').value.trim();
+    const correo = formulario.querySelector('input[name="correo"]').value.trim();
+    const mensaje = formulario.querySelector('textarea[name="mensaje"]').value.trim();
 
-    // Recorremos los checkboxes seleccionados
-    checkboxes.forEach(chk => {
-        if (chk.checked || chk.disabled) {
-            const nombreServicio = chk.parentElement.textContent.trim();
-            const precio = parseFloat(chk.getAttribute('data-precio'));
-            serviciosSeleccionados.push(`• ${nombreServicio} ($${precio} USD)`);
-            total += precio;
-        }
-    });
+    estadoFormulario.style.display = "flex";
+    estadoFormulario.className = "caja-estado caja-error";
 
-    const cantidadPaginas = parseInt(inputPaginas.value) || 0;
-    if (cantidadPaginas > 0) {
-        serviciosSeleccionados.push(`• ${cantidadPaginas} Página(s) adicional(es) ($${cantidadPaginas * 10} USD)`);
-        total += (cantidadPaginas * 10);
+    if (nombre === "" || correo === "" || mensaje === "") {
+      estadoFormulario.innerHTML = '<i class="fa-solid fa-triangle-exclamation icono-estado"></i> TERMINAL: TODOS LOS CAMPOS SON OBLIGATORIOS.';
+      return;
     }
 
-    // Estructura de la tarjeta (Embed) que llegará a tu canal de Discord
-    const payload = {
-        username: "Cotizador Web",
-        avatar_url: "https://i.imgur.com/4M34hi2.png",
-        embeds: [
-            {
-                title: "📌 ¡Nuevo Presupuesto Solicitado!",
-                color: 5793266, // Color púrpura/azul estilo Discord
-                fields: [
-                    {
-                        name: "Servicios Seleccionados:",
-                        value: serviciosSeleccionados.length > 0 ? serviciosSeleccionados.join('\n') : "Ninguno seleccionado",
-                        inline: false
-                    },
-                    {
-                        name: "💰 Total Estimado:",
-                        value: `**$${total} USD**`,
-                        inline: true
-                    }
-                ],
-                footer: {
-                    text: "Enviado desde el Cotizador de tu Sitio Web"
-                },
-                timestamp: new Date().toISOString()
-            }
-        ]
-    };
+    const filtroNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{2,}(?:\s[a-zA-ZáéíóúÁÉÍÓÚñÑ]{2,})+$/;
+    if (!filtroNombre.test(nombre)) {
+      estadoFormulario.innerHTML = '<i class="fa-solid fa-user-shield icono-estado"></i> ERROR SEGURIDAD: INGRESA NOMBRE Y APELLIDO REALES.';
+      return;
+    }
 
-    // Cambiamos temporalmente el texto del botón
-    const textoOriginal = btnSolicitar.textContent;
-    btnSolicitar.textContent = "TRANSMITIENDO...";
-    btnSolicitar.disabled = true;
+    const patronRepetido = /(.)\1{3,}/;
+    if (patronRepetido.test(nombre) || patronRepetido.test(mensaje)) {
+      estadoFormulario.innerHTML = '<i class="fa-solid fa-bug icono-estado"></i> ERROR DE ENTRADA: DETECTADO TEXTO BASURA O REPETITIVO.';
+      return;
+    }
 
-    // Enviar los datos al Webhook de Discord
-    fetch(discordWebhookURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('¡Tu presupuesto ha sido transmitido con éxito! Nos pondremos en contacto contigo lo antes posible.');
-        } else {
-            alert('Hubo un inconveniente al enviar el presupuesto. Por favor, contáctanos directamente.');
+    const filtroCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!filtroCorreo.test(correo)) {
+      estadoFormulario.innerHTML = '<i class="fa-solid fa-envelope-circle-check icono-estado"></i> ERROR: FORMATO DE CORREO INVÁLIDO.';
+      return;
+    }
+
+    estadoFormulario.innerHTML = '<i class="fa-solid fa-spinner fa-spin icono-estado"></i> CONECTANDO CON EL SERVIDOR DE SEGURIDAD...';
+    estadoFormulario.className = "caja-estado caja-exito";
+
+    const datosFormulario = new FormData(formulario);
+
+    try {
+      const respuesta = await fetch(formulario.action, {
+        method: formulario.method,
+        body: datosFormulario,
+        headers: {
+          'Accept': 'application/json'
         }
-    })
-    .catch(err => {
-        console.error('Error al enviar a Discord:', err);
-        alert('Ocurrió un error de conexión al enviar.');
-    })
-    .finally(() => {
-        btnSolicitar.textContent = textoOriginal;
-        btnSolicitar.disabled = false;
-    });
-});
+      });
 
+      if (respuesta.ok) {
+        estadoFormulario.innerHTML = '<i class="fa-solid fa-circle-check icono-estado"></i> ¡MENSAJE TRANSMITIDO CON ÉXITO! TE RESPONDERÉ PRONTO.';
+        estadoFormulario.className = "caja-estado caja-exito";
+        formulario.reset();
+      } else {
+        throw new Error('Error de servidor');
+      }
+    } catch (error) {
+      estadoFormulario.innerHTML = '<i class="fa-solid fa-wifi icono-estado"></i> ERROR DE CONEXIÓN: ENLACE SATURADO, INTENTA MÁS TARDE.';
+      estadoFormulario.className = "caja-estado caja-error";
+    }
+  });
+});

@@ -1,34 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const checkboxes = document.querySelectorAll('.chk-servicio');
-    const inputPaginas = document.getElementById('num-paginas');
-    const totalElemento = document.getElementById('total-calculado');
-    const btnSolicitar = document.getElementById('btn-solicitar');
+const discordWebhookURL = "https://discord.com/api/webhooks/1561447100405911653/p6o6LsuLKKPJ3oZ4NKzy-EiU-gCH0FkqMBpzvu86yTNwfNy_XqJEJjDcR1onVZcKHs1i";
 
-    function calcularTotal() {
-        let total = 0;
-
-        checkboxes.forEach(chk => {
-            if (chk.checked || chk.disabled) {
-                total += parseFloat(chk.getAttribute('data-precio'));
-            }
-        });
-
-        const cantidadPaginas = parseInt(inputPaginas.value) || 0;
-        total += (cantidadPaginas * 10);
-
-        totalElemento.textContent = `$${total} USD`;
-    }
-
-    checkboxes.forEach(chk => {
-        chk.addEventListener('change', calcularTotal);
-    });
-
-    inputPaginas.addEventListener('input', () => {
-        if (inputPaginas.value < 0) inputPaginas.value = 0;
-        calcularTotal();
-    });
-
-    btnSolicitar.addEventListener('click', (e) => {
+btnSolicitar.addEventListener('click', (e) => {
     e.preventDefault();
 
     let total = 0;
@@ -50,18 +22,59 @@ document.addEventListener('DOMContentLoaded', () => {
         total += (cantidadPaginas * 10);
     }
 
-    // Armamos el texto del mensaje personalizado
-    const mensajeText = `¡Hola Victor! Me gustaría solicitar el siguiente presupuesto:\n\n` +
-                          serviciosSeleccionados.join('\n') + 
-                          `\n\nTotal estimado: $${total} USD`;
+    // Estructura de la tarjeta (Embed) que llegará a tu canal de Discord
+    const payload = {
+        username: "Cotizador Web",
+        avatar_url: "https://i.imgur.com/4M34hi2.png",
+        embeds: [
+            {
+                title: "📌 ¡Nuevo Presupuesto Solicitado!",
+                color: 5793266, // Color púrpura/azul estilo Discord
+                fields: [
+                    {
+                        name: "Servicios Seleccionados:",
+                        value: serviciosSeleccionados.length > 0 ? serviciosSeleccionados.join('\n') : "Ninguno seleccionado",
+                        inline: false
+                    },
+                    {
+                        name: "💰 Total Estimado:",
+                        value: `**$${total} USD**`,
+                        inline: true
+                    }
+                ],
+                footer: {
+                    text: "Enviado desde el Cotizador de tu Sitio Web"
+                },
+                timestamp: new Date().toISOString()
+            }
+        ]
+    };
 
-    // Codificamos el texto para que la URL sea válida
-    const mensajeCodificado = encodeURIComponent(mensajeText);
+    // Cambiamos temporalmente el texto del botón
+    const textoOriginal = btnSolicitar.textContent;
+    btnSolicitar.textContent = "TRANSMITIENDO...";
+    btnSolicitar.disabled = true;
 
-    // Enlace directo a TU perfil de Telegram pasando el texto
-    const urlTelegram = `https://t.me/Victor2010s?text=${mensajeCodificado}`;
-
-    // Abrimos tu Telegram directo en una pestaña nueva
-    window.open(urlTelegram, '_blank');
+    // Enviar los datos al Webhook de Discord
+    fetch(discordWebhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('¡Tu presupuesto ha sido transmitido con éxito! Nos pondremos en contacto contigo lo antes posible.');
+        } else {
+            alert('Hubo un inconveniente al enviar el presupuesto. Por favor, contáctanos directamente.');
+        }
+    })
+    .catch(err => {
+        console.error('Error al enviar a Discord:', err);
+        alert('Ocurrió un error de conexión al enviar.');
+    })
+    .finally(() => {
+        btnSolicitar.textContent = textoOriginal;
+        btnSolicitar.disabled = false;
+    });
 });
-});
+
