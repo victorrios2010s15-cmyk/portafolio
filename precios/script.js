@@ -1,7 +1,4 @@
-const discordWebhookURL = "https://discord.com/api/webhooks/1561447100405911653/p6o6LsuLKKPJ3oZ4NKzy-EiU-gCH0FkqMBpzvu86yTNwfNy_XqJEJjDcR1onVZcKHs1i";
-
 document.addEventListener('DOMContentLoaded', () => {
-
     const checkboxes = document.querySelectorAll('.chk-servicio');
     const inputPaginas = document.getElementById('num-paginas');
     const totalElemento = document.getElementById('total-calculado');
@@ -12,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputContacto = document.getElementById('contacto-cliente');
     const modalExito = document.getElementById('modal-exito');
     const btnCerrarModal = document.getElementById('btn-cerrar-modal');
+    const alertaError = document.getElementById('alerta-error');
 
-    // --- FUNCIÓN DE CÁLCULO EN VIVO ---
+    // Función de cálculo en vivo
     function calcularTotal() {
         let total = 0;
-
         checkboxes.forEach(chk => {
             if (chk.checked) {
                 total += parseFloat(chk.getAttribute('data-precio')) || 0;
@@ -31,32 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (totalElemento) {
             totalElemento.textContent = `$${total} USD`;
         }
-
         return total;
     }
 
-    // Escuchar cambios para sumar en tiempo real
-    checkboxes.forEach(chk => {
-        chk.addEventListener('change', calcularTotal);
-    });
+    checkboxes.forEach(chk => chk.addEventListener('change', calcularTotal));
+    if (inputPaginas) inputPaginas.addEventListener('input', calcularTotal);
 
-    if (inputPaginas) {
-        inputPaginas.addEventListener('input', calcularTotal);
-    }
-
-    // --- ENVIAR AL WEBHOOK DE DISCORD ---
+    // Botón de transmitir
     if (btnSolicitar) {
         btnSolicitar.addEventListener('click', (e) => {
             e.preventDefault();
 
-            // Validar campos de texto
             const nombre = inputNombre.value.trim();
             const contacto = inputContacto.value.trim();
 
+            // Validar con estilo cyberpunk en pantalla en vez del alert nativo
             if (!nombre || !contacto) {
-                alert('Por favor completa tu Nombre y tu Correo o Discord para continuar.');
+                if (alertaError) {
+                    alertaError.style.display = 'block';
+                    setTimeout(() => { alertaError.style.display = 'none'; }, 4000);
+                }
                 return;
             }
+
+            if (alertaError) alertaError.style.display = 'none';
 
             let total = 0;
             let serviciosSeleccionados = [];
@@ -105,9 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 inline: true
                             }
                         ],
-                        footer: {
-                            text: "Notificación enviada desde tu Cotizador Web"
-                        },
+                        footer: { text: "Notificación enviada desde tu Cotizador Web" },
                         timestamp: new Date().toISOString()
                     }
                 ]
@@ -117,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnTexto.textContent = "TRANSMITIENDO...";
             btnSolicitar.disabled = true;
 
-            fetch(discordWebhookURL, {
+            fetch("https://discord.com/api/webhooks/1561447100405911653/p6o6LsuLKKPJ3oZ4NKzy-EiU-gCH0FkqMBpzvu86yTNwfNy_XqJEJjDcR1onVZcKHs1i", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -126,8 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     if (modalExito) {
                         modalExito.classList.remove('oculto');
-                    } else {
-                        alert('¡Presupuesto enviado con éxito!');
                     }
                 } else {
                     alert('Hubo un error al transmitir el presupuesto.');
@@ -147,9 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnCerrarModal && modalExito) {
         btnCerrarModal.addEventListener('click', () => {
             modalExito.classList.add('oculto');
+            inputNombre.value = "";
+            inputContacto.value = "";
         });
     }
 
-    // Cálculo inicial
     calcularTotal();
 });

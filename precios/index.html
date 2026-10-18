@@ -6,7 +6,6 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Cotizador Cyberpunk & Métodos de Pago</title>
     <link rel="stylesheet" href="./styles.css">
-    <!-- Corregida la URL de FontAwesome -->
     <script src="https://kit.fontawesome.com/4018d9f845.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -74,10 +73,12 @@
             </section>
 
             <section class="panel-total">
-                <!-- Campos para registrar los datos del cliente -->
+                <!-- Aviso de error personalizado estilo Cyberpunk -->
+                <div id="alerta-error" class="alerta-cyber">Por favor completa tu Nombre y tu Correo o Discord.</div>
+
                 <div class="datos-cliente-grupo">
-                    <input type="text" id="nombre-cliente" placeholder="Tu Nombre o Empresa" class="input-cyber" required>
-                    <input type="text" id="contacto-cliente" placeholder="Tu Correo o Discord de contacto" class="input-cyber" required>
+                    <input type="text" id="nombre-cliente" placeholder="Tu Nombre o Empresa" class="input-cyber">
+                    <input type="text" id="contacto-cliente" placeholder="Tu Correo o Discord de contacto" class="input-cyber">
                 </div>
 
                 <div class="pantalla-total">
@@ -91,7 +92,7 @@
             </section>
         </main>
 
-        <!-- Modal Cyberpunk de Éxito -->
+        <!-- Modal Cyberpunk de Éxito Centrado -->
         <div id="modal-exito" class="modal-cyber oculto">
             <div class="modal-contenido">
                 <i class="fa-solid fa-circle-check icono-exito"></i>
@@ -103,38 +104,26 @@
 
         <section class="terminos-pagos">
             <h2>Términos y Condiciones de Pago</h2>
-
             <div class="politicas-grid">
                 <div class="politica-card">
                     <div class="icon">📌</div>
                     <h3>Esquema de Pago 50 / 50</h3>
-                    <p>
-                        Se requiere un <strong>anticipo del 50%</strong> del costo total para iniciar el diseño y desarrollo. El <strong>50% restante</strong> se cancela una vez que el sitio web esté terminado y probado a tu conformidad, justo antes de publicarlo en tu dominio o servidor.
-                    </p>
+                    <p>Se requiere un <strong>anticipo del 50%</strong> del costo total para iniciar el diseño y desarrollo. El <strong>50% restante</strong> se cancela una vez que el sitio web esté terminado y probado a tu conformidad.</p>
                 </div>
-
                 <div class="politica-card">
                     <div class="icon">💵</div>
                     <h3>Moneda y Tasa de Cambio</h3>
-                    <p>
-                        Los presupuestos están expresados en dólares (<strong>$ USD</strong>). En caso de realizar el pago en moneda nacional (Bolívares), la conversión se calculará utilizando la tasa oficial del <strong>Banco Central de Venezuela (BCV)</strong> correspondiente al día de la transacción.
-                    </p>
+                    <p>Los presupuestos están expresados en dólares (<strong>$ USD</strong>). En caso de pagar en Bolívares, se calculará a la tasa oficial del <strong>Banco Central de Venezuela (BCV)</strong>.</p>
                 </div>
-
                 <div class="politica-card">
                     <div class="icon">💳</div>
                     <h3>Métodos Disponibles (Manual)</h3>
-                    <p>
-                        Aceptamos transferencias mediante <strong>Pago Móvil, Binance Pay (USDT), PayPal y Zelle</strong>. Los datos específicos para realizar la transferencia se te suministrarán directamente al acordar el proyecto.
-                    </p>
+                    <p>Aceptamos transferencias mediante <strong>Pago Móvil, Binance Pay (USDT), PayPal y Zelle</strong>.</p>
                 </div>
-
                 <div class="politica-card">
                     <div class="icon">📩</div>
                     <h3>Confirmación de Servicio</h3>
-                    <p>
-                        Una vez realizado el anticipo, deberás enviar el comprobante de pago por <strong>Correo Electrónico o Discord</strong> para validar la transacción e iniciar formalmente el desarrollo de tu sitio web.
-                    </p>
+                    <p>Una vez realizado el anticipo, deberás enviar el comprobante por <strong>Correo Electrónico o Discord</strong>.</p>
                 </div>
             </div>
         </section>
@@ -150,6 +139,7 @@
         </footer>
     </div>
 
+    <!-- Vinculación limpia con tu archivo externo script.js -->
     <script src="script.js"></script>
 </body>
 </html>
