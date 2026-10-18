@@ -1,4 +1,8 @@
+const discordWebhookURL = "https://discord.com/api/webhooks/1561447100405911653/p6o6LsuLKKPJ3oZ4NKzy-EiU-gCH0FkqMBpzvu86yTNwfNy_XqJEJjDcR1onVZcKHs1i";
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Selección de elementos del DOM
     const checkboxes = document.querySelectorAll('.chk-servicio');
     const inputPaginas = document.getElementById('num-paginas');
     const totalElemento = document.getElementById('total-calculado');
@@ -11,55 +15,72 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCerrarModal = document.getElementById('btn-cerrar-modal');
     const alertaError = document.getElementById('alerta-error');
 
-    // Función de cálculo en vivo
+    // --- CÁLCULO EN TIEMPO REAL ---
     function calcularTotal() {
         let total = 0;
+
+        // Sumar checkboxes seleccionados
         checkboxes.forEach(chk => {
             if (chk.checked) {
                 total += parseFloat(chk.getAttribute('data-precio')) || 0;
             }
         });
 
+        // Sumar páginas secundarias adicionales
         if (inputPaginas) {
             const numPaginas = parseInt(inputPaginas.value) || 0;
             total += (numPaginas * 10);
         }
 
+        // Actualizar monto visible en pantalla
         if (totalElemento) {
             totalElemento.textContent = `$${total} USD`;
         }
+
         return total;
     }
 
-    checkboxes.forEach(chk => chk.addEventListener('change', calcularTotal));
-    if (inputPaginas) inputPaginas.addEventListener('input', calcularTotal);
+    // Escuchar cambios para calcular dinámicamente
+    checkboxes.forEach(chk => {
+        chk.addEventListener('change', calcularTotal);
+    });
 
-    // Botón de transmitir
+    if (inputPaginas) {
+        inputPaginas.addEventListener('input', calcularTotal);
+    }
+
+    // --- TRANSMISIÓN A DISCORD ---
     if (btnSolicitar) {
         btnSolicitar.addEventListener('click', (e) => {
             e.preventDefault();
 
-            const nombre = inputNombre.value.trim();
-            const contacto = inputContacto.value.trim();
+            const nombre = inputNombre ? inputNombre.value.trim() : "";
+            const contacto = inputContacto ? inputContacto.value.trim() : "";
 
-            // Validar con estilo cyberpunk en pantalla en vez del alert nativo
+            // VALIDACIÓN CYBERPUNK EN PANTALLA (Sin alerts nativos del navegador)
             if (!nombre || !contacto) {
                 if (alertaError) {
                     alertaError.style.display = 'block';
-                    setTimeout(() => { alertaError.style.display = 'none'; }, 4000);
+                    setTimeout(() => { 
+                        alertaError.style.display = 'none'; 
+                    }, 4000);
                 }
                 return;
             }
 
-            if (alertaError) alertaError.style.display = 'none';
+            // Ocultar alerta de error si ya llenó los campos
+            if (alertaError) {
+                alertaError.style.display = 'none';
+            }
 
             let total = 0;
             let serviciosSeleccionados = [];
 
+            // Recopilar módulos seleccionados
             checkboxes.forEach(chk => {
                 if (chk.checked) {
                     const tarjeta = chk.closest('.opcion-card');
-                    const tituloEl = tarjeta.querySelector('.opcion-titulo');
+                    const tituloEl = tarjeta ? tarjeta.querySelector('.opcion-titulo') : null;
                     const titulo = tituloEl ? tituloEl.textContent.trim() : "Servicio";
                     const precio = parseFloat(chk.getAttribute('data-precio')) || 0;
                     
@@ -68,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
+            // Recopilar páginas adicionales
             if (inputPaginas) {
                 const numPaginas = parseInt(inputPaginas.value) || 0;
                 if (numPaginas > 0) {
@@ -77,12 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Estructura del Embed para Discord
             const payload = {
                 username: "Bot Cotizador",
                 embeds: [
                     {
                         title: "📥 ¡Nuevo Presupuesto Solicitado!",
-                        color: 5793266,
+                        color: 5793266, // Púrpura Discord
                         fields: [
                             {
                                 name: "👤 Datos del Cliente:",
@@ -100,48 +123,61 @@ document.addEventListener('DOMContentLoaded', () => {
                                 inline: true
                             }
                         ],
-                        footer: { text: "Notificación enviada desde tu Cotizador Web" },
+                        footer: {
+                            text: "Notificación enviada desde tu Cotizador Web"
+                        },
                         timestamp: new Date().toISOString()
                     }
                 ]
             };
 
-            const textoOriginal = btnTexto.textContent;
-            btnTexto.textContent = "TRANSMITIENDO...";
+            // Animación del botón durante el envío
+            const textoOriginal = btnTexto ? btnTexto.textContent : "TRANSMITIR PRESUPUESTO";
+            if (btnTexto) btnTexto.textContent = "TRANSMITIENDO...";
             btnSolicitar.disabled = true;
 
-            fetch("https://discord.com/api/webhooks/1561447100405911653/p6o6LsuLKKPJ3oZ4NKzy-EiU-gCH0FkqMBpzvu86yTNwfNy_XqJEJjDcR1onVZcKHs1i", {
+            // Petición al Webhook de Discord
+            fetch(discordWebhookURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             })
             .then(response => {
                 if (response.ok) {
+                    // Mostrar modal de éxito estilizado
                     if (modalExito) {
                         modalExito.classList.remove('oculto');
                     }
                 } else {
-                    alert('Hubo un error al transmitir el presupuesto.');
+                    if (alertaError) {
+                        alertaError.textContent = "Error al transmitir. Inténtalo nuevamente.";
+                        alertaError.style.display = 'block';
+                    }
                 }
             })
             .catch(err => {
                 console.error('Error al enviar a Discord:', err);
-                alert('Ocurrió un problema de conexión.');
+                if (alertaError) {
+                    alertaError.textContent = "Error de conexión con el servidor.";
+                    alertaError.style.display = 'block';
+                }
             })
             .finally(() => {
-                btnTexto.textContent = textoOriginal;
+                if (btnTexto) btnTexto.textContent = textoOriginal;
                 btnSolicitar.disabled = false;
             });
         });
     }
 
+    // Evento para cerrar el modal y resetear el formulario
     if (btnCerrarModal && modalExito) {
         btnCerrarModal.addEventListener('click', () => {
             modalExito.classList.add('oculto');
-            inputNombre.value = "";
-            inputContacto.value = "";
+            if (inputNombre) inputNombre.value = "";
+            if (inputContacto) inputContacto.value = "";
         });
     }
 
+    // Cálculo inicial automático
     calcularTotal();
 });
