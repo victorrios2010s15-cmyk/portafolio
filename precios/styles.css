@@ -316,6 +316,89 @@ body {
     color: #06b6d4;
 }
 
+.datos-cliente-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input-cyber {
+    background-color: #0b0f19;
+    border: 1px solid #7c3aed;
+    color: #ffffff;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-cyber:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+}
+
+.input-cyber::placeholder {
+    color: #64748b;
+}
+
+/* Modal Cyberpunk Personalizado */
+.modal-cyber {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 7, 13, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-cyber.oculto {
+    display: none;
+    opacity: 0;
+}
+
+.modal-contenido {
+    background: #0f172a;
+    border: 2px solid #a855f7;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.3);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.modal-contenido .icono-exito {
+    font-size: 40px;
+    color: #10b981;
+}
+
+.modal-contenido h3 {
+    color: #ffffff;
+    font-family: inherit;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.modal-contenido p {
+    color: #94a3b8;
+    font-size: 14px;
+    margin: 0;
+}
+
 @media (max-width: 768px) {
     body {
         padding: 20px 10px;

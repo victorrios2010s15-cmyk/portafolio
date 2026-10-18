@@ -7,25 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalElemento = document.getElementById('total-calculado');
     const btnSolicitar = document.getElementById('btn-solicitar');
     const btnTexto = document.getElementById('btn-texto');
+    
+    // Elementos del Modal y del Cliente
+    const inputNombre = document.getElementById('nombre-cliente');
+    const inputContacto = document.getElementById('contacto-cliente');
+    const modalExito = document.getElementById('modal-exito');
+    const btnCerrarModal = document.getElementById('btn-cerrar-modal');
 
-    // --- FUNCIÓN PARA CALCULAR Y ACTUALIZAR EL TOTAL EN TIEMPO REAL ---
+    // --- FUNCIÓN DE CÁLCULO EN VIVO ---
     function calcularTotal() {
         let total = 0;
 
-        // Sumar checkboxes
         checkboxes.forEach(chk => {
             if (chk.checked) {
                 total += parseFloat(chk.getAttribute('data-precio')) || 0;
             }
         });
 
-        // Sumar páginas adicionales
         if (inputPaginas) {
             const numPaginas = parseInt(inputPaginas.value) || 0;
             total += (numPaginas * 10);
         }
 
-        // Actualizar en pantalla
         if (totalElemento) {
             totalElemento.textContent = `$${total} USD`;
         }
@@ -33,24 +36,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return total;
     }
 
-    // Escuchar cambios en checkboxes e input de páginas
-    checkboxes.forEach(chk => {
-        chk.addEventListener('change', calcularTotal);
-    });
-
-    if (inputPaginas) {
-        inputPaginas.addEventListener('input', calcularTotal);
-    }
+    checkboxes.forEach(chk => chk.addEventListener('change', calcularTotal));
+    if (inputPaginas) inputPaginas.addEventListener('input', calcularTotal);
 
     // --- ENVIAR AL WEBHOOK DE DISCORD ---
     if (btnSolicitar) {
         btnSolicitar.addEventListener('click', (e) => {
             e.preventDefault();
 
+            // Validar que el cliente haya colocado su nombre y contacto
+            const nombre = inputNombre.value.trim();
+            const contacto = inputContacto.value.trim();
+
+            if (!nombre || !contacto) {
+                alert('Por favor ingresa tu nombre y método de contacto para continuar.');
+                return;
+            }
+
             let total = 0;
             let serviciosSeleccionados = [];
 
-            // Recorrer seleccionados
             checkboxes.forEach(chk => {
                 if (chk.checked) {
                     const tarjeta = chk.closest('.opcion-card');
@@ -62,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Recorrer páginas adicionales
             if (inputPaginas) {
                 const numPaginas = parseInt(inputPaginas.value) || 0;
                 if (numPaginas > 0) {
@@ -72,16 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Datos para Discord
+            // Datos enriquecidos para Discord con la info del cliente
             const payload = {
                 username: "Bot Cotizador",
                 embeds: [
                     {
-                        title: "📥 ¡Nuevo Presupuesto Generado!",
-                        color: 5793266, // Púrpura Discord
+                        title: "📥 ¡Nuevo Presupuesto con Datos de Contacto!",
+                        color: 5793266,
                         fields: [
                             {
-                                name: "Módulos Seleccionados:",
+                                name: "👤 Datos del Cliente:",
+                                value: `**Nombre:** ${nombre}\n**Contacto:** ${contacto}`,
+                                inline: false
+                            },
+                            {
+                                name: "🛒 Módulos Seleccionados:",
                                 value: serviciosSeleccionados.length > 0 ? serviciosSeleccionados.join('\n') : "Ninguno",
                                 inline: false
                             },
@@ -92,19 +101,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         ],
                         footer: {
-                            text: "Notificación automática enviada desde tu Cotizador Web"
+                            text: "Notificación enviada desde tu Cotizador Web"
                         },
                         timestamp: new Date().toISOString()
                     }
                 ]
             };
 
-            // Animación del botón
             const textoOriginal = btnTexto.textContent;
             btnTexto.textContent = "TRANSMITIENDO...";
             btnSolicitar.disabled = true;
 
-            // Enviar petición Fetch a Discord
             fetch(discordWebhookURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -112,14 +119,15 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => {
                 if (response.ok) {
-                    alert('¡Tu presupuesto ha sido transmitido con éxito! Me pondré en contacto contigo a la brevedad.');
+                    // Mostrar modal cyberpunk en vez de alert
+                    modalExito.classList.remove('oculto');
                 } else {
-                    alert('Hubo un error al transmitir el presupuesto. Por favor inténtalo nuevamente.');
+                    alert('Hubo un error al transmitir el presupuesto.');
                 }
             })
             .catch(err => {
                 console.error('Error al enviar a Discord:', err);
-                alert('Ocurrió un problema de conexión al transmitir.');
+                alert('Ocurrió un problema de conexión.');
             })
             .finally(() => {
                 btnTexto.textContent = textoOriginal;
@@ -128,7 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cálculo inicial al cargar
+    // Cerrar modal al hacer clic en Aceptar
+    if (btnCerrarModal) {
+        btnCerrarModal.addEventListener('click', () => {
+            modalExito.classList.add('oculto');
+        });
+    }
+
     calcularTotal();
 });
-

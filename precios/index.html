@@ -74,16 +74,32 @@
             </section>
 
             <section class="panel-total">
+                <!-- Campos para registrar los datos del cliente -->
+                <div class="datos-cliente-grupo">
+                    <input type="text" id="nombre-cliente" placeholder="Tu Nombre o Empresa" class="input-cyber" required>
+                    <input type="text" id="contacto-cliente" placeholder="Tu Correo o Discord de contacto" class="input-cyber" required>
+                </div>
+
                 <div class="pantalla-total">
                     <span class="total-label">PRESUPUESTO ESTIMADO</span>
                     <span class="total-monto" id="total-calculado">$40 USD</span>
                 </div>
-                <!-- Botón corregido con icono de Discord/Envío -->
+                
                 <button id="btn-solicitar" class="btn-accion-neon">
                     <i class="fa-brands fa-discord"></i> <span id="btn-texto">TRANSMITIR PRESUPUESTO</span>
                 </button>
             </section>
         </main>
+
+        <!-- Modal Cyberpunk de Éxito -->
+        <div id="modal-exito" class="modal-cyber oculto">
+            <div class="modal-contenido">
+                <i class="fa-solid fa-circle-check icono-exito"></i>
+                <h3>¡TRANSMISIÓN EXITOSA!</h3>
+                <p>Tu presupuesto ha sido enviado a mi consola. Me pondré en contacto contigo a la brevedad.</p>
+                <button id="btn-cerrar-modal" class="btn-accion-neon">ACEPTAR</button>
+            </div>
+        </div>
 
         <section class="terminos-pagos">
             <h2>Términos y Condiciones de Pago</h2>
@@ -117,24 +133,5 @@
                     <div class="icon">📩</div>
                     <h3>Confirmación de Servicio</h3>
                     <p>
-                        Una vez realizado el anticipo, deberás enviar el comprobante de pago por <strong>Correo Electrónico o Discord</strong> para validar la transacción e iniciar formalmente el desarrollo de tu sitio web.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <footer class="seccion-pagos">
-            <h3><i class="fa-solid fa-credit-card"></i> Canales de Pago Autorizados</h3>
-            <div class="grid-pagos">
-                <div class="pago-card"><i class="fa-solid fa-mobile-screen-button"></i> Pago Móvil</div>
-                <div class="pago-card"><i class="fa-solid fa-coins"></i> Binance Pay</div>
-                <div class="pago-card"><i class="fa-brands fa-paypal"></i> PayPal</div>
-                <div class="pago-card"><i class="fa-solid fa-building-columns"></i> Zelle</div>
-            </div>
-        </footer>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+                        Una vez realizado el anticipo, deberás enviar el comprobante de pago por <strong>Correo Electrónico o Discord</strong> para validar la transacción e iniciar formal
 
