@@ -1,21 +1,32 @@
-// 1. Define la ruta de tu API primero
-const endpointAPI = "/api/enviar-cotizacion";
+// 1. Selecciona tu botón de transmitir por su ID o clase
+const botonTransmitir = document.getElementById('btn-transmitir'); // <-- Reemplaza 'btn-transmitir' con el ID real de tu botón en el HTML
 
-// 2. Define tu objeto payload con los datos
-const payload = {
-    cliente: document.getElementById('nombre-cliente').value,
-    total: document.getElementById('total-calculado').textContent,
-    servicios: "Servicios seleccionados aquí"
-};
+// 2. Escucha el evento de clic
+botonTransmitir.addEventListener('click', (e) => {
+    e.preventDefault(); // Evita que la página se recargue si es un formulario
 
-// 3. Ejecuta el fetch usando ambas variables ya declaradas
-fetch(endpointAPI, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-})
-.then(response => {
-    if (response.ok) {
-        console.log("Enviado con éxito");
-    }
+    const endpointAPI = "/api/enviar-cotizacion";
+    
+    const payload = {
+        content: `📩 **Nueva Cotización Recibida**\n` +
+                 `**Cliente:** ${document.getElementById('nombre-cliente').value}\n` +
+                 `**Total:** ${document.getElementById('total-calculado').textContent}`
+    };
+
+    // 3. Ejecuta el fetch al hacer clic
+    fetch(endpointAPI, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("¡Cotización enviada con éxito!");
+        } else {
+            alert("Hubo un error en el servidor.");
+        }
+    })
+    .catch(err => {
+        console.error("Error de conexión:", err);
+    });
 });
