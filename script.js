@@ -65,3 +65,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// ANIMACIÓN DE ENTRADA AL BAJAR Y LLEGAR A CADA SECCIÓN
+document.addEventListener('DOMContentLoaded', () => {
+    // Seleccionamos todas las secciones principales
+    const secciones = document.querySelectorAll('header.hero, section.about, section.services, section.projects, section.contact');
+
+    // Les agregamos la clase inicial oculta
+    secciones.forEach(seccion => {
+        seccion.classList.add('seccion-oculta');
+    });
+
+    // Configuramos el observador de desplazamiento (Scroll Observer)
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('seccion-visible');
+                // Opcional: si quieres que la animación ocurra cada vez que subes y bajas, remueve la siguiente línea:
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15 // Se activa cuando el 15% de la sección entra en la pantalla
+    });
+
+    secciones.forEach(seccion => {
+        observer.observe(seccion);
+    });
+});

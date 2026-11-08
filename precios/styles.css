@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,83 +7,102 @@
 }
 
 body {
-    background-color: #0f111a;
+    background-color: #07090e;
     color: #e2e8f0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif;
     min-height: 100vh;
-    padding: 40px 20px;
+    padding: 30px 16px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow-x: hidden;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(217, 70, 239, 0.3) 0%, transparent 40%),
+        linear-gradient(135deg, #07090e 0%, #0f172a 100%);
+    background-size: 200% 200%;
+    animation: animarFondoCotizador 6s ease infinite alternate;
+}
+
+@keyframes animarFondoCotizador {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
 }
 
 .cotizador-container {
     width: 100%;
     max-width: 900px;
-    background: rgba(22, 27, 38, 0.5);
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    border-radius: 24px;
-    padding: 40px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
+    background: rgba(15, 20, 32, 0.85);
+    border: 1px solid rgba(6, 182, 212, 0.5);
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 25px rgba(6, 182, 212, 0.25);
+    backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 2;
 }
 
 .header-cotizador {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 .titulo-neon {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -1px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    text-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
 }
 
 .sub-neon {
-    font-size: 14px;
+    font-size: 13px;
     color: #06b6d4;
-    margin-top: 5px;
+    margin-top: 4px;
+    text-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
 }
 
 .panel-interactivo {
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 40px;
-    margin-bottom: 40px;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
 .opciones-servicios {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
 }
 
 .opciones-servicios h3, .seccion-pagos h3 {
-    font-size: 18px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
     color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     gap: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .opcion-card {
-    background: rgba(11, 13, 21, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 14px;
-    padding: 16px 20px;
+    background: rgba(7, 9, 14, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 18px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .opcion-card:hover {
-    border-color: rgba(6, 182, 212, 0.4);
-    background: rgba(11, 13, 21, 0.9);
+    border-color: #06b6d4;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+    transform: translateY(-2px);
 }
 
 .opcion-card input[type="checkbox"] {
@@ -89,11 +110,10 @@ body {
 }
 
 .checkbox-custom {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(6, 182, 212, 0.4);
-    border-radius: 6px;
-    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(6, 182, 212, 0.7);
+    border-radius: 4px;
     position: relative;
     flex-shrink: 0;
 }
@@ -102,7 +122,7 @@ body {
 .opcion-card input[type="checkbox"]:disabled + .checkbox-custom {
     background: #06b6d4;
     border-color: #06b6d4;
-    box-shadow: 0 0 10px #06b6d4;
+    box-shadow: 0 0 12px #06b6d4;
 }
 
 .opcion-card input[type="checkbox"]:checked + .checkbox-custom::after,
@@ -110,8 +130,8 @@ body {
     content: '\f00c';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
-    color: #0f111a;
-    font-size: 11px;
+    color: #07090e;
+    font-size: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -124,7 +144,7 @@ body {
 
 .opcion-titulo {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: #ffffff;
 }
@@ -132,333 +152,217 @@ body {
 .opcion-desc {
     display: block;
     font-size: 12px;
-    color: #64748b;
-    margin-top: 2px;
+    color: #94a3b8;
 }
 
 .opcion-precio {
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 15px;
     font-weight: 700;
     color: #d946ef;
+    text-shadow: 0 0 10px rgba(217, 70, 239, 0.4);
 }
 
-.input-especial {
-    cursor: default;
+.opcion-precio-unidad {
+    font-size: 13px;
+    font-weight: 700;
+    color: #d946ef;
+    white-space: nowrap;
+    text-shadow: 0 0 8px rgba(217, 70, 239, 0.4);
 }
 
 .control-numerico {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 5px;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
 }
 
 .control-numerico input {
-    width: 60px;
+    width: 50px;
     padding: 6px;
-    background: #0b0d15;
-    border: 1px solid rgba(6, 182, 212, 0.3);
+    background: #07090e;
+    border: 1px solid #06b6d4;
     border-radius: 6px;
     color: #ffffff;
     text-align: center;
     font-weight: 700;
-    outline: none;
-}
-
-.control-numerico input:focus {
-    border-color: #d946ef;
-    box-shadow: 0 0 8px rgba(217, 70, 239, 0.4);
-}
-
-.opcion-precio-unidad {
-    font-size: 11px;
-    color: #64748b;
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
 }
 
 .panel-total {
-    width: 100%;
+    background: rgba(7, 9, 14, 0.95);
+    border: 1px solid rgba(217, 70, 239, 0.5);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: rgba(11, 13, 21, 0.8);
-    border: 1px solid rgba(217, 70, 239, 0.2);
-    border-radius: 18px;
-    padding: 24px;
-    text-align: center;
-    height: max-content;
-    align-self: center;
+    gap: 16px;
+    box-shadow: 0 0 25px rgba(217, 70, 239, 0.2);
 }
 
 .pantalla-total {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 }
 
 .total-label {
-    display: block;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    color: #64748b;
+    color: #94a3b8;
     letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .total-monto {
-    font-size: 36px;
-    font-weight: 900;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
     color: #d946ef;
-    text-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
-    display: block;
-    margin-top: 5px;
+    text-shadow: 0 0 20px rgba(217, 70, 239, 0.7);
+    line-height: 1.2;
 }
 
 .btn-accion-neon {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     background: transparent;
     color: #06b6d4;
     border: 2px solid #06b6d4;
-    border-radius: 12px;
-    font-size: 13px;
+    border-radius: 10px;
     font-weight: 700;
     cursor: pointer;
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
     transition: all 0.3s ease;
 }
 
 .btn-accion-neon:hover {
     background: #06b6d4;
-    color: #0f111a;
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
-}
-
-.terminos-pagos {
-  background-color: #0d1117;
-  border: 1px solid #1f293d;
-  border-radius: 12px;
-  padding: 30px;
-  margin-top: 30px;
-  color: #e6edf3;
-}
-
-.terminos-pagos h2 {
-  color: #00ffcc;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.intro-pagos {
-  color: #8b949e;
-  font-size: 0.95rem;
-  margin-bottom: 25px;
-}
-
-.politicas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.politica-card {
-  background-color: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 8px;
-  padding: 20px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.politica-card:hover {
-  border-color: #00ffcc;
-  transform: translateY(-3px);
-}
-
-.politica-card .icon {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-}
-
-.politica-card h3 {
-  color: #ffffff;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-}
-
-.politica-card p {
-  color: #c9d1d9;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.seccion-pagos {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 25px;
-}
-
-.grid-pagos {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.pago-card {
-    background: rgba(11, 13, 21, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: #94a3b8;
-}
-
-.pago-card i {
-    display: block;
-    font-size: 20px;
-    margin-bottom: 8px;
-    color: #06b6d4;
+    color: #000;
+    box-shadow: 0 0 30px #06b6d4;
+    transform: translateY(-2px);
 }
 
 .datos-cliente-grupo {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 15px;
-    width: 100%;
 }
 
 .input-cyber {
-    background-color: #0b0f19;
-    border: 1px solid #7c3aed;
+    background-color: #07090e;
+    border: 1px solid rgba(217, 70, 239, 0.5);
     color: #ffffff;
-    padding: 12px 15px;
+    padding: 10px 12px;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13px;
     outline: none;
+    box-shadow: 0 0 8px rgba(217, 70, 239, 0.2);
     transition: all 0.3s ease;
 }
 
 .input-cyber:focus {
-    border-color: #a855f7;
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+    border-color: #d946ef;
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.6);
 }
 
-.input-cyber::placeholder {
-    color: #64748b;
+.terminos-pagos {
+    background-color: rgba(7, 9, 14, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 24px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Modal Cyberpunk Personalizado */
-.modal-cyber {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(5, 7, 13, 0.85);
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+.terminos-pagos h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #06b6d4;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
 }
 
-.modal-cyber {
-    position: fixed !important; /* Mantiene la ventana fija respecto a la pantalla del teléfono */
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background-color: rgba(5, 7, 13, 0.85);
-    backdrop-filter: blur(8px);
-    
-    /* Centrado perfecto vertical y horizontal */
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    
-    z-index: 999999 !important; /* Garantiza que quede por encima de todo el contenido */
-    padding: 20px;
-    box-sizing: border-box;
+.politicas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
 }
 
-.modal-cyber.oculto {
-    display: none !important;
+.politica-card {
+    background-color: rgba(15, 20, 32, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 16px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.modal-contenido {
-    background: #0f172a;
-    border: 2px solid #a855f7;
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
-    padding: 25px 20px;
-    border-radius: 12px;
+.politica-card:hover {
+    border-color: #06b6d4;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+    transform: translateY(-3px);
+}
+
+.politica-card h3 {
+    font-size: 0.95rem;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.politica-card p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+
+.seccion-pagos {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.grid-pagos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.pago-card {
+    background: rgba(7, 9, 14, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px;
+    border-radius: 10px;
     text-align: center;
-    max-width: 350px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    box-sizing: border-box;
+    font-size: 12px;
+    color: #94a3b8;
+    transition: all 0.3s ease;
 }
 
-/* Estilo Cyberpunk para mensajes de error en pantalla (en lugar del alert nativo) */
-.alerta-cyber {
-    background-color: rgba(239, 68, 68, 0.15);
-    border: 1px solid #ef4444;
-    color: #fca5a5;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-size: 13px;
-    text-align: center;
-    margin-bottom: 15px;
-    display: none;
+.pago-card:hover {
+    border-color: #06b6d4;
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
+    color: #fff;
+}
+
+.pago-card i {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: #06b6d4;
+    text-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
 }
 
 @media (max-width: 768px) {
-    body {
-        padding: 20px 10px;
-    }
-
-    .cotizador-container {
-        padding: 20px;
-        border-radius: 16px;
-    }
-
-    .titulo-neon {
-        font-size: 24px;
-    }
-
     .panel-interactivo {
         grid-template-columns: 1fr;
-        gap: 24px;
     }
-
-    .opcion-card {
-        padding: 12px 14px;
-        gap: 10px;
-    }
-
-    .opcion-titulo {
-        font-size: 14px;
-    }
-
-    .opcion-desc {
-        font-size: 11px;
-    }
-
-    .opcion-precio {
-        font-size: 13px;
-    }
-
-    .panel-total {
-        padding: 20px;
-    }
-
-    .total-monto {
-        font-size: 30px;
-    }
-
     .grid-pagos {
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
     }
 }
