@@ -971,35 +971,49 @@ body {
         overflow-x: hidden;
     }
 
-    /* 1. NAVBAR MÓVIL Y MENÚ EN GRID/FLEX LIMPIO */
+    /* NAVBAR COMPACTO PARA MÓVILES */
     .container {
-        flex-direction: column;
-        gap: 12px;
-        padding: 12px 16px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px;
+        gap: 8px;
     }
 
     .logo {
-        justify-content: center;
+        gap: 6px;
     }
 
-    .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px 14px;
-        width: 100%;
-    }
-
-    .nav-links a {
-        font-size: 13px;
-    }
-
-    .btn-hire {
-        padding: 8px 16px;
+    .logo-box {
+        padding: 4px 8px;
         font-size: 12px;
     }
 
-    /* 2. HERO Y CONTENEDOR DE AVATAR EN MÓVIL */
+    .logo-text {
+        font-size: 15px;
+    }
+
+    /* Menú de navegación horizontal y compacto o en una línea limpia */
+    .nav-links {
+        display: none; /* Si prefieres ocultarlo en móvil o puedes usar un menú compacto */
+    }
+
+    /* Si quieres mantener los enlaces visibles pero pequeños en móvil: */
+    /* 
+    .nav-links {
+        gap: 8px;
+    }
+    .nav-links a {
+        font-size: 11px;
+    }
+    */
+
+    .btn-hire {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    /* HERO Y CONTENEDOR DE AVATAR EN MÓVIL */
     .hero {
         padding: 20px 16px;
         min-height: auto;
@@ -1020,7 +1034,6 @@ body {
     .first-name, .last-name { font-size: 38px; }
     .hero-role { font-size: 20px; }
 
-    /* REDUCCIÓN PROPORCIONAL DE LA FOTO Y ÓRBITAS */
     .hero-image-wrapper {
         width: 260px;
         height: 260px;
@@ -1052,7 +1065,6 @@ body {
         font-size: 12px;
     }
 
-    /* 3. SECCIONES Y CONTENIDOS AL 100% DE ANCHO */
     .about, .services, .projects, .contact {
         padding: 50px 16px;
     }
@@ -1073,9 +1085,6 @@ body {
         flex: 1;
         padding: 14px;
     }
-
-    .stat-number { font-size: 24px; }
-    .stat-desc { font-size: 11px; }
 
     .services-grid, .projects-grid {
         grid-template-columns: 1fr;

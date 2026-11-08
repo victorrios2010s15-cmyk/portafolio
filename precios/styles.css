@@ -358,11 +358,113 @@ body {
     text-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 868px) {
+    body {
+        padding: 16px 12px;
+        overflow-x: hidden;
+    }
+
+    .cotizador-container {
+        padding: 24px 16px;
+        border-radius: 16px;
+    }
+
+    .titulo-neon {
+        font-size: 24px;
+    }
+
+    .sub-neon {
+        font-size: 12px;
+    }
+
+    /* CAMBIO A 1 COLUMNA EN EL PANEL INTERACTIVO */
     .panel-interactivo {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
+
+    /* TARJETAS DE SERVICIOS EN MÓVIL */
+    .opcion-card {
+        padding: 12px 14px;
+        gap: 10px;
+    }
+
+    .opcion-titulo {
+        font-size: 13px;
+    }
+
+    .opcion-desc {
+        font-size: 11px;
+    }
+
+    .opcion-precio {
+        font-size: 14px;
+    }
+
+    /* CONTROL NUMÉRICO (+10 USD c/u) ALINEADO */
+    .control-numerico {
+        gap: 6px;
+    }
+
+    .control-numerico input {
+        width: 45px;
+        padding: 4px;
+        font-size: 13px;
+    }
+
+    .opcion-precio-unidad {
+        font-size: 12px;
+    }
+
+    /* PANEL DEL TOTAL Y FORMULARIO EN MÓVIL */
+    .panel-total {
+        padding: 20px 16px;
+    }
+
+    .total-monto {
+        font-size: 28px;
+    }
+
+    .input-cyber {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .btn-accion-neon {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    /* POLÍTICAS Y TÉRMINOS EN MÓVIL */
+    .terminos-pagos {
+        padding: 16px;
+        margin-top: 16px;
+    }
+
+    .politicas-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* MÉTODOS DE PAGO EN 2 COLUMNAS COMPACTAS */
     .grid-pagos {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .pago-card {
+        padding: 10px 8px;
+        font-size: 11px;
+    }
+
+    .pago-card i {
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-pagos {
+        grid-template-columns: 1fr; /* 1 sola columna para teléfonos pequeños */
     }
 }
