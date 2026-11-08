@@ -1,3 +1,89 @@
+/* PANTALLA DE BIENVENIDA (PRELOADER CYBERPUNK) */
+.preloader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #07090e;
+    background: radial-gradient(circle at center, #0f172a 0%, #07090e 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.preloader-overlay.loader-oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    animation: flotarLoader 2s ease-in-out infinite alternate;
+}
+
+@keyframes flotarLoader {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+.loader-icono {
+    font-size: 38px;
+    color: var(--cyan);
+    text-shadow: 0 0 20px var(--cyan);
+    animation: parpadeoIcono 1.5s infinite;
+}
+
+@keyframes parpadeoIcono {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; text-shadow: 0 0 30px var(--magenta); color: var(--magenta); }
+}
+
+.loader-texto {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.texto-magenta {
+    color: var(--magenta);
+    text-shadow: 0 0 15px var(--magenta);
+}
+
+.loader-barra {
+    width: 220px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+}
+
+.loader-progreso {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--magenta));
+    box-shadow: 0 0 12px var(--cyan);
+    animation: cargarProgreso 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes cargarProgreso {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap');
 
 * {
@@ -10,9 +96,9 @@
     --bg-dark: #07090e;
     --card-bg: rgba(15, 20, 32, 0.85);
     --cyan: #06b6d4;
-    --cyan-glow: rgba(6, 182, 212, 0.6);
+    --cyan-glow: rgba(6, 182, 212, 0.25); /* Reducido el brillo */
     --magenta: #d946ef;
-    --magenta-glow: rgba(217, 70, 239, 0.6);
+    --magenta-glow: rgba(217, 70, 239, 0.25); /* Reducido el brillo */
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
 }
@@ -132,11 +218,11 @@ body {
     padding: 40px 24px;
     position: relative;
     background: 
-        radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.35) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(217, 70, 239, 0.35) 0%, transparent 40%),
-        linear-gradient(135deg, #07090e 0%, #0f172a 100%);
-    background-size: 250% 250%;
-    animation: animarFondoHero 6s ease infinite alternate;
+        radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(217, 70, 239, 0.12) 0%, transparent 45%),
+        linear-gradient(135deg, #07090e 0%, #0b0f19 100%);
+    background-size: 200% 200%;
+    animation: animarFondoHero 10s ease infinite alternate;
 }
 
 @keyframes animarFondoHero {
@@ -306,7 +392,7 @@ body {
     border-radius: 50%;
     padding: 4px; 
     background: linear-gradient(135deg, var(--cyan), var(--magenta));
-    box-shadow: 0 0 40px var(--cyan);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); /* Sombra controlada */
     z-index: 2;
     overflow: hidden;
 }
@@ -323,12 +409,12 @@ body {
     position: absolute;
     width: 340px;
     height: 340px;
-    border: 3px dashed var(--cyan);
+    border: 2px dashed rgba(6, 182, 212, 0.3); /* Anillo más discreto */
     border-radius: 50%;
     z-index: 3;
     pointer-events: none;
-    box-shadow: 0 0 25px var(--cyan) inset;
-    animation: rotar-radar 8s linear infinite;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.1) inset;
+    animation: rotar-radar 12s linear infinite;
 }
 
 @keyframes rotar-radar {

@@ -93,3 +93,20 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(seccion);
     });
 });
+
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('loader-pantalla');
+    const heroSection = document.querySelector('header.hero');
+
+    // Tiempo suficiente para mostrar la barra y el mensaje de bienvenida (2.4s)
+    setTimeout(() => {
+        if (preloader) {
+            preloader.classList.add('loader-oculto');
+        }
+
+        // Una vez oculto el loader, se activa la animación de entrada de la 1ª Sección (Hero)
+        if (heroSection) {
+            heroSection.classList.add('seccion-visible');
+        }
+    }, 2400);
+});
