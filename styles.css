@@ -982,13 +982,11 @@ body {
     }
 
     /* NAVBAR SÚPER LIMPIO Y PROFESIONAL EN MÓVIL */
-    .container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 16px;
-        width: 100%;
+.container {
+        padding: 10px 12px;
+        gap: 6px;
     }
+
 
     .nav {
         position: sticky;
@@ -1005,7 +1003,7 @@ body {
     }
 
     .logo-text {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     /* Ocultamos los enlaces sueltos para que no estorben ni se corten */
@@ -1013,10 +1011,16 @@ body {
         display: none; 
     }
 
-    .btn-hire {
-        padding: 6px 12px;
-        font-size: 11px;
+   .nav-acciones {
+        gap: 6px;
     }
+
+
+    .btn-hire {
+        padding: 5px 10px;
+        font-size: 10px;
+        white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+        border-radius: 6px;
 
     /* HERO Y CONTENEDOR DE AVATAR EN MÓVIL */
     .hero {
@@ -1112,20 +1116,10 @@ body {
         text-align: center;
     }
 
-        .btn-precios-mobile {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 10px;
-        background: transparent;
-        color: var(--cyan);
-        border: 1px solid var(--cyan);
-        border-radius: 8px;
-        font-size: 11px;
-        font-weight: 600;
-        text-decoration: none;
-        box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
-        transition: 0.3s ease;
+    .btn-precios-mobile {
+        padding: 5px 8px;
+        font-size: 10px;
+        border-radius: 6px;
     }
 
     .btn-precios-mobile:hover {
