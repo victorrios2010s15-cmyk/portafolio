@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victor Rios | Desarrollador Front-End</title>
+    <title>Victor Rios | Desarrollador Front-End Pro</title>
     <link class="link-styles" rel="stylesheet" href="./styles.css">
     <script src="https://kit.fontawesome.com/4018d9f845.js" crossorigin="anonymous"></script>
     <meta name="robots" content="noindex, nofollow">
     <meta property="og:title" content="Victor Rios | Desarrollador Front-End">
-    <meta property="og:description" content="Portafolio web personal de Víctor Ríos. Interfaces interactivas y diseño futurista.">
+    <meta property="og:description" content="Portafolio web personal de Víctor Ríos. Interfaces interactivas y diseño profesional de alto rendimiento.">
     <meta property="og:image" content="./images.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="pro-portfolio-body">
+
+<!-- BARRA DE PROGRESO DE SCROLL -->
+<div class="scroll-progress-bar" id="scroll-bar"></div>
+
+<!-- CANVAS DE PARTÍCULAS INTERACTIVAS DE FONDO -->
+<canvas id="canvas-particulas"></canvas>
+
+<!-- PANTALLA DE CARGA PRO -->
 <div id="loader-pantalla" class="preloader-overlay">
     <div class="preloader-content">
         <div class="loader-icono">
             <i class="fa-solid fa-code"></i>
         </div>
         <h2 class="loader-texto">
-            Bienvenido a mi <span class="texto-magenta">Portafolio Web</span>
+            Cargando Experiencia <span class="texto-accent">Pro</span>
         </h2>
         <div class="loader-barra">
             <div class="loader-progreso"></div>
@@ -32,33 +38,39 @@
     </div>
 </div>
 
+<!-- NAVBAR FLOTANTE CON INDICADOR ACTIVO -->
 <nav class="nav">
     <div class="container">
         <div class="logo">
-            <span class="logo-box">DW</span>
-            <span class="logo-text">Diseñador Web</span>
+            <span class="logo-box">VR</span>
+            <span class="logo-text">Victor Rios</span>
         </div>
         
-        <!-- Enlaces de escritorio normales (se ocultan solos en móvil) -->
         <div class="nav-links">
-            <a href="#inicio">Inicio</a>
-            <a href="#sobre-mi">Sobre mi</a>
-            <a href="#sobre-mi">Habilidades</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#proyectos">Proyectos</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#inicio" class="nav-link active">Inicio</a>
+            <a href="#sobre-mi" class="nav-link">Sobre mí</a>
+            <a href="#habilidades" class="nav-link">Habilidades</a>
+            <a href="#servicios" class="nav-link">Servicios</a>
+            <a href="#proyectos" class="nav-link">Proyectos</a>
+            <a href="#contacto" class="nav-link">Contacto</a>
         </div>
 
-        <!-- Botones de acción rápida para móvil y escritorio -->
         <div class="nav-acciones">
-            <a href="mailto:victorrios2010s15@gmail.com?subject=Propuesta%20de%20Trabajo%20-%20Desarrollo%20Web&body=%C2%A1Hola%20Victor!%0A%0AMe%20interesa%20contratar%20tus%20servicios%20de%20desarrollo%20web%20para%20un%20proyecto.%0A%0AQuisiera%20coordinar%20una%20revisi%C3%B3n%20de%20detalles%20y%20presupuesto.%0A%0AQuedo%20atento%20a%20tu%20respuesta." class="btn-hire">Contrátame&nbsp;&rarr;</a>
+            <a href="mailto:victorrios2010s15@gmail.com?subject=Propuesta%20de%20Trabajo" class="btn-hire">Contrátame &rarr;</a>
         </div>
     </div>
 </nav>
 
+    <!-- HERO SECTION CON ELEMENTOS FLOTANTES E EFECTO DE ESCRITURA -->
     <header class="hero" id="inicio">
-        <div class="hero-container">
+        <div class="hero-bg-icons">
+            <i class="fa-solid fa-laptop-code icon-bg bg-1"></i>
+            <i class="fa-brands fa-square-js icon-bg bg-2"></i>
+            <i class="fa-brands fa-python icon-bg bg-3"></i>
+            <i class="fa-solid fa-database icon-bg bg-4"></i>
+        </div>
 
+        <div class="hero-container">
             <div class="hero-content">
                 <div class="badge-disponible">
                     <span class="punto-led"></span>
@@ -66,53 +78,54 @@
                 </div>
 
                 <h1 class="hero-name"> 
-                    <span class="hero-greeting">Hola a todos! Soy</span>
+                    <span class="hero-greeting">¡Hola a todos! Soy</span>
                     <span class="first-name">Victor</span>
                     <span class="last-name">Rios</span>
                 </h1>
 
                 <div class="hero-role">
-                    Yo soy <span class="role-highlight">Diseñador Creativo</span><span class="role-cursor">|</span>
+                    Yo soy <span class="role-highlight" id="typing-text"></span><span class="role-cursor">|</span>
                 </div>
 
                 <p class="hero-description">
-                    Desarrollador en constante evolución con bases sólidas en HTML, <br />
-                    CSS, JavaScript y Python. Me apasiona construir interfaces interactivas <br />
-                    y lógicas funcionales, apalancando herramientas de Inteligencia Artificial <br /> 
-                    para acelerar el desarrollo y optimizar la calidad del código.
+                    Desarrollador en constante evolución con bases sólidas en HTML, CSS, JavaScript y Python. <br />
+                    Me apasiona construir interfaces interactivas y lógicas funcionales, apalancando <br />
+                    herramientas de Inteligencia Artificial para acelerar el desarrollo.
                 </p>
 
                 <div class="tech-badges">
-                    <span class="badge badge-html">HTML5</span>
-                    <span class="badge badge-css">CSS3</span>
-                    <span class="badge badge-js">JavaScript</span>
-                    <span class="badge badge-python">Python</span>
-                    <span class="badge badge-ai">Desarrollo con IA</span>
+                    <span class="badge badge-html"><i class="fa-brands fa-html5"></i> HTML5</span>
+                    <span class="badge badge-css"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+                    <span class="badge badge-js"><i class="fa-brands fa-js"></i> JavaScript</span>
+                    <span class="badge badge-python"><i class="fa-brands fa-python"></i> Python</span>
+                    <span class="badge badge-ai"><i class="fa-solid fa-brain"></i> AI-Driven Dev</span>
                 </div>
             </div>
+
             <div class="hero-image-wrapper">
-    <div class="tech-space-decor">
-        <div class="space-item item-pc"><i class="fa-solid fa-laptop-code"></i></div>
-        <div class="space-item item-linux"><i class="fa-brands fa-linux"></i></div>
-        <div class="space-item item-terminal"><i class="fa-solid fa-terminal"></i></div>
-    </div>
+                <div class="tech-space-decor">
+                    <div class="space-item item-pc" title="Front-End"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div class="space-item item-linux" title="Linux / OS"><i class="fa-brands fa-linux"></i></div>
+                    <div class="space-item item-terminal" title="Terminal"><i class="fa-solid fa-terminal"></i></div>
+                    <div class="space-item item-git" title="Git"><i class="fa-brands fa-git-alt"></i></div>
+                </div>
 
-    <div class="profile-glow-effect"></div>
-    <div class="abstract-shape shape-3"></div> <!-- Anillo de radar animado -->
-    
-    <div class="profile-card">
-        <img src="./perfil.jpg" alt="Victor Rios" class="profile-img">
-    </div>
+                <div class="profile-glow-effect"></div>
+                <div class="abstract-shape shape-3"></div>
+                
+                <div class="profile-card js-tilt">
+                    <img src="./perfil.jpg" alt="Victor Rios" class="profile-img">
+                </div>
 
-    <div class="abstract-shape shape-1"><i class="fa-solid fa-code"></i></div>
-    <div class="abstract-shape shape-2"><i class="fa-solid fa-circle-nodes"></i></div>
-</div>
+                <div class="abstract-shape shape-1"><i class="fa-solid fa-code"></i></div>
+                <div class="abstract-shape shape-2"><i class="fa-solid fa-circle-nodes"></i></div>
+            </div>
         </div>
     </header>
 
+    <!-- SOBRE MÍ -->
     <section class="about" id="sobre-mi">
         <div class="about-container">
-            
             <div class="about-title-block">
                 <span class="about-subtitle">Mi Trayectoria</span>
                 <h2 class="about-title">Sobre Mí</h2>
@@ -123,7 +136,7 @@
                 <div class="about-text">
                     <h3>Estudiante de Liceo & Desarrollador Apasionado</h3>
                     <p>
-                        Actualmente soy estudiante de liceo y, en paralelo, dedico mi tiempo libre a dominar la programación y el diseño web. Mi camino comenzó por pura curiosidad y hoy en día se ha convertido en una pasión por construir interfaces futuristas, limpias y eficientes.
+                        Actualmente soy estudiante de liceo y, en paralelo, dedico mi tiempo libre a dominar la programación y el diseño web. Mi camino comenzó por pura curiosidad y hoy en día se ha convertido en una pasión por construir interfaces modernas, limpias y eficientes.
                     </p>
                     <p>
                         Me enfoco en el aprendizaje continuo y en desafiar mis propios límites de maquetación pura con HTML y CSS. Además, implemento Inteligencia Artificial en mi flujo de trabajo para acelerar procesos de desarrollo y optimizar la lógica de mis proyectos.
@@ -131,21 +144,22 @@
                 </div>
 
                 <div class="about-stats">
-                    <div class="stat-card">
+                    <div class="stat-card js-tilt">
                         <span class="stat-number">Liceo</span>
                         <p class="stat-desc">Estudios Actuales</p>
                     </div>
-                    <div class="stat-card">
+                    <div class="stat-card js-tilt">
                         <span class="stat-number">100%</span>
                         <p class="stat-desc">Autodidacta</p>
-
+                    </div>
                 </div>
             </div>
+        </div>
     </section>
-     <!-- SECCIÓN HABILIDADES / SKILLS -->
+
+    <!-- HABILIDADES -->
     <section class="skills" id="habilidades">
         <div class="skills-container">
-
             <div class="skills-title-block">
                 <span class="skills-subtitle">Stack Tecnológico</span>
                 <h2 class="skills-title">Habilidades Técnicas</h2>
@@ -153,8 +167,7 @@
             </div>
 
             <div class="skills-grid">
-                <!-- HTML5 -->
-                <div class="skill-card skill-html">
+                <div class="skill-card skill-html js-tilt">
                     <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
                     <div class="skill-info">
                         <h3>HTML5</h3>
@@ -162,8 +175,7 @@
                     </div>
                 </div>
 
-                <!-- CSS3 -->
-                <div class="skill-card skill-css">
+                <div class="skill-card skill-css js-tilt">
                     <div class="skill-icon"><i class="fa-brands fa-css3-alt"></i></div>
                     <div class="skill-info">
                         <h3>CSS3</h3>
@@ -171,8 +183,7 @@
                     </div>
                 </div>
 
-                <!-- JavaScript -->
-                <div class="skill-card skill-js">
+                <div class="skill-card skill-js js-tilt">
                     <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
                     <div class="skill-info">
                         <h3>JavaScript</h3>
@@ -180,8 +191,7 @@
                     </div>
                 </div>
 
-                <!-- Python -->
-                <div class="skill-card skill-python">
+                <div class="skill-card skill-python js-tilt">
                     <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
                     <div class="skill-info">
                         <h3>Python</h3>
@@ -189,8 +199,7 @@
                     </div>
                 </div>
 
-                <!-- Git / GitHub -->
-                <div class="skill-card skill-git">
+                <div class="skill-card skill-git js-tilt">
                     <div class="skill-icon"><i class="fa-brands fa-github"></i></div>
                     <div class="skill-info">
                         <h3>Git & GitHub</h3>
@@ -198,8 +207,7 @@
                     </div>
                 </div>
 
-                <!-- IA & Prompting -->
-                <div class="skill-card skill-ai">
+                <div class="skill-card skill-ai js-tilt">
                     <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
                     <div class="skill-info">
                         <h3>Desarrollo con IA</h3>
@@ -207,12 +215,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
+
+    <!-- SERVICIOS -->
     <section class="services" id="servicios">
         <div class="services-container">
-
             <div class="services-title-block">
                 <span class="services-subtitle">Lo Que Ofrezco</span>
                 <h2 class="services-title">Mis Servicios</h2>
@@ -220,36 +228,36 @@
             </div>
 
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card js-tilt">
                     <div class="service-icon-box">
                         <i class="fa-solid fa-code"></i>
                     </div>
                     <h3>Desarrollo Front-End</h3>
-                    <p>Maquetación precisa y estructurada utilizando HTML y CSS nativo para lograr interfaces web rápidas, limpias y adaptadas a cualquier pantalla de computadora o teléfono móvil.</p>
+                    <p>Maquetación precisa y estructurada utilizando HTML y CSS nativo para lograr interfaces web rápidas, limpias y adaptadas a cualquier pantalla.</p>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card js-tilt">
                     <div class="service-icon-box">
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
                     <h3>Diseño Creativo UI/UX</h3>
-                    <p>Creación de interfaces web atractivas con estéticas modernas, paletas de colores inmersivas y animaciones fluidas que cautivan y mejoran la experiencia de navegación del usuario.</p>
+                    <p>Creación de interfaces web atractivas con estéticas modernas, paletas de colores inmersivas y animaciones fluidas.</p>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card js-tilt">
                     <div class="service-icon-box">
                         <i class="fa-solid fa-robot"></i>
                     </div>
                     <h3>Desarrollo Inteligente</h3>
-                    <p>Optimización del desarrollo de software mediante scripts funcionales de Python e integración de Inteligencia Artificial para acelerar flujos de trabajo técnicos.</p>
+                    <p>Optimización del desarrollo de software mediante scripts funcionales de Python e integración de Inteligencia Artificial.</p>
                 </div>
             </div>
-
         </div>
     </section>
+
+    <!-- PROYECTOS -->
     <section class="projects" id="proyectos">
         <div class="projects-container">
-
             <div class="projects-title-block">
                 <span class="projects-subtitle">Mis Creaciones</span>
                 <h2 class="projects-title">Proyectos</h2>
@@ -257,43 +265,42 @@
             </div>
 
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card js-tilt">
                     <div class="project-header">
                         <a href="https://github.com/victorrios2010s15-cmyk/portafolio" target="_blank"><i class="fa-regular fa-folder-open folder-icon"></i></a>
                         <div class="project-links">
                             <a href="https://victorrios2010s15-cmyk.github.io/portafolio/" target="_blank"><i class="fa-brands fa-github"></i></a>
                         </div>
                     </div>
-                    <h3>Portafolio Cyberpunk</h3>
-                    <p>Diseño y maquetación de una interfaz web responsive con estéticas oscuras, efectos de neón interactivos y una consola animada en CSS nativo.</p>
+                    <h3>Portafolio Personal</h3>
+                    <p>Diseño y maquetación de una interfaz web responsive con estéticas oscuras, efectos interactivos y animaciones fluidas.</p>
                     <div class="project-tags">
                         <span>HTML5</span>
                         <span>CSS3</span>
                     </div>
                 </div>
 
-                <div class="project-card">
-    <div class="project-header">
-        <a href="https://github.com/victorrios2010s15-cmyk/atajos" target="_blank"><i class="fa-regular fa-folder-open folder-icon"></i></a>
-        <div class="project-links">
-            <a href="https://victorrios2010s15-cmyk.github.io/atajos/" target="_blank" title="Ver Código Fuente"><i class="fa-brands fa-github"></i></a>
-        </div>
-    </div>
-    <h3>Atajos Cyberpunk</h3>
-    <p>Diseño y maquetación de una interfaz web responsive de atajos de teclado con estética Cyberpunk Dark, efectos interactivos de neón y un sistema de filtrado dinámico en JavaScript nativo.</p>
-    <div class="project-tags">
-        <span>CSS</span>
-        <span>JavaScript</span>
-    </div>
-</div>
-
+                <div class="project-card js-tilt">
+                    <div class="project-header">
+                        <a href="https://github.com/victorrios2010s15-cmyk/atajos" target="_blank"><i class="fa-regular fa-folder-open folder-icon"></i></a>
+                        <div class="project-links">
+                            <a href="https://victorrios2010s15-cmyk.github.io/atajos/" target="_blank" title="Ver Código Fuente"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3>Atajos de Teclado</h3>
+                    <p>Diseño de interfaz web interactiva de atajos de teclado con efectos dinámicos y sistema de filtrado en JavaScript nativo.</p>
+                    <div class="project-tags">
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
             </div>
-
         </div>
     </section>
+
+    <!-- CONTACTO -->
     <section class="contact" id="contacto">
         <div class="contact-container">
-
             <div class="contact-title-block">
                 <span class="contact-subtitle">¿Tienes un proyecto en mente?</span>
                 <h2 class="contact-title">Contáctame</h2>
@@ -301,14 +308,12 @@
             </div>
 
             <div class="contact-grid">
-                <!-- Columna de Canales Directos -->
                 <div class="contact-info-col">
                     <div class="contact-info-box">
                         <h3>Canales Directos</h3>
-                        <p>¿Prefieres el trato directo? Escríbeme a través de mis canales oficiales o redes y te responderé con velocidad cibernética.</p>
+                        <p>¿Prefieres el trato directo? Escríbeme a través de mis canales oficiales o redes y te responderé lo antes posible.</p>
                         
                         <div class="direct-channels">
-                            <!-- Discord Card -->
                             <a href="https://discord.com/users/1553578226196938835" target="_blank" class="channel-card discord-card">
                                 <div class="channel-icon"><i class="fa-brands fa-discord"></i></div>
                                 <div class="channel-data">
@@ -318,7 +323,6 @@
                                 <i class="fa-solid fa-arrow-right channel-arrow"></i>
                             </a>
 
-                            <!-- Correo Card -->
                             <a href="mailto:victorrios2010s15@gmail.com?subject=Propuesta%20de%20Trabajo" class="channel-card email-card">
                                 <div class="channel-icon"><i class="fa-solid fa-envelope"></i></div>
                                 <div class="channel-data">
@@ -328,7 +332,6 @@
                                 <i class="fa-solid fa-arrow-right channel-arrow"></i>
                             </a>
 
-                            <!-- GitHub Card -->
                             <a href="https://github.com/victorrios2010s15-cmyk" target="_blank" class="channel-card github-card">
                                 <div class="channel-icon"><i class="fa-brands fa-github"></i></div>
                                 <div class="channel-data">
@@ -341,11 +344,10 @@
                     </div>
                 </div>
 
-                <!-- Columna del Formulario de Sistema -->
                 <div class="contact-form-col">
                     <div class="contact-box">
                         <h3>Transmisión de Mensaje</h3>
-                        <p>Completa el formulario para enviar una alerta directa a mi sistema.</p>
+                        <p>Completa el formulario para enviarme una propuesta o mensaje.</p>
 
                         <form id="formulario-contacto" class="cyber-form" action="https://formspree.io/f/maeqarra" method="POST" novalidate>
                             <div class="form-group">
@@ -357,7 +359,7 @@
                             <div class="form-group">
                                 <textarea name="mensaje" required placeholder="Escribe tu mensaje aquí..." rows="4"></textarea>
                             </div>
-                            <button type="submit" class="btn-submit-cyber">ENVIAR AL SISTEMA</button>
+                            <button type="submit" class="btn-submit-cyber">ENVIAR MENSAJE</button>
                             <div id="estado-formulario" class="caja-estado"></div>
                         </form>
                     </div>
@@ -372,11 +374,14 @@
                     <a href="https://x.com/Victor2010s" target="_blank" class="footer-icon"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </footer>
-
         </div>
     </section>
 
-<script src="./script.js"></script>
+<!-- BOTÓN IR ARRIBA -->
+<button id="btn-top" class="btn-back-to-top" title="Volver arriba">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
 
+<script src="./script.js"></script>
 </body>
 </html>
