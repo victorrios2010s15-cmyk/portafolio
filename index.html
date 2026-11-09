@@ -43,6 +43,7 @@
         <div class="nav-links">
             <a href="#inicio">Inicio</a>
             <a href="#sobre-mi">Sobre mi</a>
+            <a href="#sobre-mi">Habilidades</a>
             <a href="#servicios">Servicios</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#contacto">Contacto</a>
@@ -141,6 +142,74 @@
                 </div>
             </div>
     </section>
+     <!-- SECCIÓN HABILIDADES / SKILLS -->
+    <section class="skills" id="habilidades">
+        <div class="skills-container">
+
+            <div class="skills-title-block">
+                <span class="skills-subtitle">Stack Tecnológico</span>
+                <h2 class="skills-title">Habilidades Técnicas</h2>
+                <div class="skills-title-line"></div>
+            </div>
+
+            <div class="skills-grid">
+                <!-- HTML5 -->
+                <div class="skill-card skill-html">
+                    <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
+                    <div class="skill-info">
+                        <h3>HTML5</h3>
+                        <span class="skill-level">Estructura Semántica</span>
+                    </div>
+                </div>
+
+                <!-- CSS3 -->
+                <div class="skill-card skill-css">
+                    <div class="skill-icon"><i class="fa-brands fa-css3-alt"></i></div>
+                    <div class="skill-info">
+                        <h3>CSS3</h3>
+                        <span class="skill-level">Diseño & Animaciones</span>
+                    </div>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="skill-card skill-js">
+                    <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+                    <div class="skill-info">
+                        <h3>JavaScript</h3>
+                        <span class="skill-level">Lógica & Dinamismo</span>
+                    </div>
+                </div>
+
+                <!-- Python -->
+                <div class="skill-card skill-python">
+                    <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+                    <div class="skill-info">
+                        <h3>Python</h3>
+                        <span class="skill-level">Lógica & Scripts</span>
+                    </div>
+                </div>
+
+                <!-- Git / GitHub -->
+                <div class="skill-card skill-git">
+                    <div class="skill-icon"><i class="fa-brands fa-github"></i></div>
+                    <div class="skill-info">
+                        <h3>Git & GitHub</h3>
+                        <span class="skill-level">Control de Versiones</span>
+                    </div>
+                </div>
+
+                <!-- IA & Prompting -->
+                <div class="skill-card skill-ai">
+                    <div class="skill-icon"><i class="fa-solid fa-brain"></i></div>
+                    <div class="skill-info">
+                        <h3>Desarrollo con IA</h3>
+                        <span class="skill-level">Optimización & Speedup</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
     <section class="services" id="servicios">
         <div class="services-container">
 
@@ -223,50 +292,89 @@
         </div>
     </section>
     <section class="contact" id="contacto">
-    <div class="contact-container">
+        <div class="contact-container">
 
-        <div class="contact-title-block">
-            <span class="contact-subtitle">¿Tienes un proyecto en mente?</span>
-            <h2 class="contact-title">Contáctame</h2>
-            <div class="contact-title-line"></div>
-        </div>
-
-        <div class="contact-box">
-            <h3>¡Vamos a construir algo juntos!</h3>
-            <p>Si buscas un desarrollador creativo, te gusta mi trabajo o quieres hacerme una consulta, puedes escribirme directamente por mi canal seguro. Si tienes dudas escribeme</p>
-            
-            <div class="contact-actions">
-                <a href="https://discord.com/users/1553578226196938835" target="_blank" class="contact-btn-main">
-                    <i class="fa-brands fa-discord"></i> Escríbeme a mi Discord
-                </a>
+            <div class="contact-title-block">
+                <span class="contact-subtitle">¿Tienes un proyecto en mente?</span>
+                <h2 class="contact-title">Contáctame</h2>
+                <div class="contact-title-line"></div>
             </div>
 
-            <form id="formulario-contacto" class="cyber-form" action="https://formspree.io/f/maeqarra" method="POST" novalidate>
-                <div class="form-group">
-                    <input type="text" name="nombre" required placeholder="Nombre y Apellido">
-                </div>
-                <div class="form-group">
-                    <input type="email" name="correo" required placeholder="Tu Correo Electrónico">
-                </div>
-                <div class="form-group">
-                    <textarea name="mensaje" required placeholder="Escribe tu mensaje aquí..." rows="5"></textarea>
-                </div>
-                <button type="submit" class="btn-submit-cyber">ENVIAR AL SISTEMA</button>
-                <div id="estado-formulario" class="caja-estado"></div>
-            </form>
-        </div>
+            <div class="contact-grid">
+                <!-- Columna de Canales Directos -->
+                <div class="contact-info-col">
+                    <div class="contact-info-box">
+                        <h3>Canales Directos</h3>
+                        <p>¿Prefieres el trato directo? Escríbeme a través de mis canales oficiales o redes y te responderé con velocidad cibernética.</p>
+                        
+                        <div class="direct-channels">
+                            <!-- Discord Card -->
+                            <a href="https://discord.com/users/1553578226196938835" target="_blank" class="channel-card discord-card">
+                                <div class="channel-icon"><i class="fa-brands fa-discord"></i></div>
+                                <div class="channel-data">
+                                    <h4>Discord</h4>
+                                    <span>@Victor Rios / Directo</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right channel-arrow"></i>
+                            </a>
 
-        <footer class="main-footer">
-            <p>© 2026 Victor Rios. Todos los derechos reservados.</p>
-            <div class="footer-socials">
-                <a href="https://github.com/victorrios2010s15-cmyk" target="_blank" class="footer-icon"><i class="fa-brands fa-github"></i></a>
-                <a href="mailto:victorrios2010s15@gmail.com?subject=Consulta%20o%20Duda%20-%20Desarrollo%20Web&body=%C2%A1Hola%20Victor!%0A%0ATengo%20una%20duda%20sobre%20tus%20servicios%20de%20desarrollo%20web.%20Me%20gustar%C3%ADa%20consultarte%20lo%20siguiente:%0A%0A[Escribe%20aqu%C3%AD%20tu%20pregunta]%0A%0AQuedo%20atento%20a%20tu%20respuesta." class="footer-icon"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://x.com/Victor2010s" target="_blank" class="footer-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                            <!-- Correo Card -->
+                            <a href="mailto:victorrios2010s15@gmail.com?subject=Propuesta%20de%20Trabajo" class="channel-card email-card">
+                                <div class="channel-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="channel-data">
+                                    <h4>Correo Electrónico</h4>
+                                    <span>victorrios2010s15@gmail.com</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right channel-arrow"></i>
+                            </a>
+
+                            <!-- GitHub Card -->
+                            <a href="https://github.com/victorrios2010s15-cmyk" target="_blank" class="channel-card github-card">
+                                <div class="channel-icon"><i class="fa-brands fa-github"></i></div>
+                                <div class="channel-data">
+                                    <h4>GitHub</h4>
+                                    <span>victorrios2010s15-cmyk</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right channel-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna del Formulario de Sistema -->
+                <div class="contact-form-col">
+                    <div class="contact-box">
+                        <h3>Transmisión de Mensaje</h3>
+                        <p>Completa el formulario para enviar una alerta directa a mi sistema.</p>
+
+                        <form id="formulario-contacto" class="cyber-form" action="https://formspree.io/f/maeqarra" method="POST" novalidate>
+                            <div class="form-group">
+                                <input type="text" name="nombre" required placeholder="Nombre y Apellido">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="correo" required placeholder="Tu Correo Electrónico">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="mensaje" required placeholder="Escribe tu mensaje aquí..." rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit-cyber">ENVIAR AL SISTEMA</button>
+                            <div id="estado-formulario" class="caja-estado"></div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </footer>
 
-    </div>
-</section>
+            <footer class="main-footer">
+                <p>© 2026 Victor Rios. Todos los derechos reservados.</p>
+                <div class="footer-socials">
+                    <a href="https://github.com/victorrios2010s15-cmyk" target="_blank" class="footer-icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="mailto:victorrios2010s15@gmail.com" class="footer-icon"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://x.com/Victor2010s" target="_blank" class="footer-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </footer>
+
+        </div>
+    </section>
 
 <script src="./script.js"></script>
 

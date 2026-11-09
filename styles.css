@@ -1181,3 +1181,425 @@ body {
         transform: translateY(0);
     }
 }
+
+/* ==========================================
+   SECCIÓN DE HABILIDADES (SKILLS) CYBERPUNK
+   ========================================== */
+.skills {
+    padding: 80px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #07090e 0%, #0c121e 50%, #07090e 100%);
+}
+
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    position: relative;
+    z-index: 2;
+}
+
+.skills-title-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.skills-subtitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.skills-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.skills-title-line {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--cyan), var(--magenta));
+    border-radius: 2px;
+    margin-top: 4px;
+    box-shadow: 0 0 10px var(--cyan);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.skill-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    backdrop-filter: blur(8px);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: transparent;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-icon {
+    font-size: 32px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 0.3s ease;
+}
+
+.skill-info h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.skill-level {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Efectos Neón Personalizados por Tecnología al pasar el mouse */
+.skill-card:hover {
+    transform: translateY(-5px);
+    background: rgba(15, 23, 42, 0.95);
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.15);
+}
+
+/* Color HTML5 */
+.skill-html:hover { border-color: #f97316; box-shadow: 0 0 25px rgba(249, 115, 22, 0.3); }
+.skill-html:hover::before { background: #f97316; box-shadow: 0 0 10px #f97316; }
+.skill-html .skill-icon { color: #f97316; }
+
+/* Color CSS3 */
+.skill-css:hover { border-color: #3b82f6; box-shadow: 0 0 25px rgba(59, 130, 246, 0.3); }
+.skill-css:hover::before { background: #3b82f6; box-shadow: 0 0 10px #3b82f6; }
+.skill-css .skill-icon { color: #3b82f6; }
+
+/* Color JavaScript */
+.skill-js:hover { border-color: #eab308; box-shadow: 0 0 25px rgba(234, 179, 8, 0.3); }
+.skill-js:hover::before { background: #eab308; box-shadow: 0 0 10px #eab308; }
+.skill-js .skill-icon { color: #eab308; }
+
+/* Color Python */
+.skill-python:hover { border-color: #38bdf8; box-shadow: 0 0 25px rgba(56, 189, 248, 0.3); }
+.skill-python:hover::before { background: #38bdf8; box-shadow: 0 0 10px #38bdf8; }
+.skill-python .skill-icon { color: #38bdf8; }
+
+/* Color Git */
+.skill-git:hover { border-color: #f43f5e; box-shadow: 0 0 25px rgba(244, 63, 94, 0.3); }
+.skill-git:hover::before { background: #f43f5e; box-shadow: 0 0 10px #f43f5e; }
+.skill-git .skill-icon { color: #f43f5e; }
+
+/* Color IA */
+.skill-ai:hover { border-color: var(--magenta); box-shadow: 0 0 25px var(--magenta-glow); }
+.skill-ai:hover::before { background: var(--magenta); box-shadow: 0 0 10px var(--magenta); }
+.skill-ai .skill-icon { color: var(--magenta); }
+
+/* Adaptación Responsive */
+@media (max-width: 768px) {
+    .skills { padding: 40px 16px; }
+    .skills-grid { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* ==========================================
+   SECCIÓN DE CONTACTO MEJORADA (2 COLUMNAS)
+   ========================================== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.contact-info-col, .contact-form-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info-box {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 36px 28px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-info-box h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.contact-info-box p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.direct-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.channel-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(7, 9, 14, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.channel-icon {
+    font-size: 22px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.channel-data {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-data h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.channel-data span {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.channel-arrow {
+    color: var(--text-muted);
+    font-size: 14px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Efectos Hover específicos por canal */
+.channel-card:hover {
+    transform: translateY(-3px);
+}
+
+.channel-card:hover .channel-arrow {
+    transform: translateX(4px);
+}
+
+.discord-card:hover {
+    border-color: #5865F2;
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+}
+.discord-card:hover .channel-icon { color: #5865F2; background: rgba(88, 101, 242, 0.15); }
+.discord-card:hover .channel-arrow { color: #5865F2; }
+
+.email-card:hover {
+    border-color: var(--cyan);
+    box-shadow: 0 0 20px var(--cyan-glow);
+}
+.email-card:hover .channel-icon { color: var(--cyan); background: rgba(6, 182, 212, 0.15); }
+.email-card:hover .channel-arrow { color: var(--cyan); }
+
+.github-card:hover {
+    border-color: var(--magenta);
+    box-shadow: 0 0 20px var(--magenta-glow);
+}
+.github-card:hover .channel-icon { color: var(--magenta); background: rgba(217, 70, 239, 0.15); }
+.github-card:hover .channel-arrow { color: var(--magenta); }
+
+/* Ajuste del formulario para que encaje perfecto en la columna */
+.contact-box {
+    max-width: 100% !important;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* ==========================================
+   EFECTO SPOTLIGHT (BRILLO QUE SIGUE EL MOUSE)
+   ========================================== */
+.service-card, .project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Capa de luz dinámica para Servicios y Proyectos */
+.service-card::before, .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(6, 182, 212, 0.15),
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Efecto especial magenta para los proyectos */
+.project-card::before {
+    background: radial-gradient(
+        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(217, 70, 239, 0.15),
+        transparent 50%
+    );
+}
+
+.service-card:hover::before, .project-card:hover::before {
+    opacity: 1;
+}
+
+/* Asegurar que el contenido interno de las tarjetas esté por encima del brillo */
+.service-card > *, .project-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================
+   MEJORAS VISUALES: LÍNEAS DE NEÓN Y BOTONES
+   ========================================== */
+
+/* Animación de destello láser en las líneas de títulos */
+.about-title-line, 
+.skills-title-line, 
+.services-title-line, 
+.projects-title-line, 
+.contact-title-line {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-title-line::after,
+.skills-title-line::after,
+.services-title-line::after,
+.projects-title-line::after,
+.contact-title-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    animation: destelloLaser 3s infinite;
+}
+
+@keyframes destelloLaser {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+}
+
+/* Reflejo brillante diagonal en el botón "Contrátame" */
+.btn-hire {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-hire::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20px;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
+}
+
+.btn-hire:hover::after {
+    left: 130%;
+}
+
+/* ==========================================
+   CORRECCIÓN VISUAL CAJA DE ESTADO
+   ========================================== */
+.caja-estado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.caja-error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.caja-exito {
+    background: rgba(6, 182, 212, 0.15);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 15px var(--cyan-glow);
+}

@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // OBSERVADOR PARA LAS DEMÁS SECCIONES (About, Services, Projects, Contact)
 document.addEventListener('DOMContentLoaded', () => {
-    const seccionesRestantes = document.querySelectorAll('section.about, section.services, section.projects, section.contact');
+    const seccionesRestantes = document.querySelectorAll('section.about, section.skills, section.services, section.projects, section.contact');
 
     seccionesRestantes.forEach(seccion => {
         seccion.classList.add('seccion-oculta');
@@ -104,4 +104,20 @@ window.addEventListener('load', () => {
             heroSection.classList.add('hero-activo');
         }
     }, 2600);
+});
+
+// EFECTO SPOTLIGHT DINÁMICO PARA TARJETAS
+document.addEventListener('DOMContentLoaded', () => {
+    const tarjetasInteractivos = document.querySelectorAll('.service-card, .project-card');
+
+    tarjetasInteractivos.forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
 });
