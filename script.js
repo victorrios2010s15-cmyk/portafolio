@@ -270,3 +270,78 @@ window.addEventListener('load', () => {
         if (heroSection) heroSection.classList.add('hero-activo');
     }, 2400);
 });
+
+// 10. GESTIÓN Y LÓGICA DE VENTANA MODAL DE PROYECTOS (VISTA PREVIA CON IFRAME)
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal-proyecto');
+    const btnCerrar = document.getElementById('cerrar-modal');
+    const tarjetasProyecto = document.querySelectorAll('.project-card');
+
+    const datosProyectos = {
+        portafolio: {
+            titulo: "Portafolio Personal Pro",
+            descripcion: "Interfaz de portafolio profesional construida con maquetación nativa HTML y CSS avanzado, efectos interactivos de partículas en Canvas 2D, animaciones 3D Tilt y sistema dinámico de Formspree con validaciones en tiempo real.",
+            tags: ["HTML5", "CSS3", "JavaScript", "Canvas 2D"],
+            demo: "https://victorrios2010s15-cmyk.github.io/portafolio/",
+            github: "https://github.com/victorrios2010s15-cmyk/portafolio"
+        },
+        atajos: {
+            titulo: "Panel Interactivo de Atajos de Teclado",
+            descripcion: "Aplicación web enfocada en mejorar la productividad mediante el aprendizaje rápido de atajos de teclado para desarrolladores. Cuenta con motor de búsqueda rápido, filtrado dinámico en tiempo real y UI inmersiva.",
+            tags: ["HTML5", "CSS3", "JavaScript"],
+            demo: "https://victorrios2010s15-cmyk.github.io/atajos/",
+            github: "https://github.com/victorrios2010s15-cmyk/atajos"
+        }
+    };
+
+    const modalTitulo = document.getElementById('modal-titulo');
+    const modalDescripcion = document.getElementById('modal-descripcion');
+    const modalTags = document.getElementById('modal-tags');
+    const modalPreviewContent = document.getElementById('modal-preview-content');
+    const modalLinkDemo = document.getElementById('modal-link-demo');
+    const modalLinkGithub = document.getElementById('modal-link-github');
+
+    tarjetasProyecto.forEach(tarjeta => {
+        tarjeta.addEventListener('click', () => {
+            const claveProyecto = tarjeta.getAttribute('data-proyecto');
+            const info = datosProyectos[claveProyecto];
+
+            if (info) {
+                modalTitulo.textContent = info.titulo;
+                modalDescripcion.textContent = info.descripcion;
+                modalLinkDemo.href = info.demo;
+                modalLinkGithub.href = info.github;
+
+                // Carga la página real en vivo usando un iframe
+                modalPreviewContent.innerHTML = `
+                    <iframe src="${info.demo}" title="${info.titulo}" class="modal-iframe"></iframe>
+                `;
+
+                modalTags.innerHTML = info.tags.map(t => `<span>${t}</span>`).join('');
+
+                modal.classList.add('activo');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    function cerrarModal() {
+        modal.classList.remove('activo');
+        modalPreviewContent.innerHTML = ''; // Limpia el iframe al cerrar
+        document.body.style.overflow = 'auto';
+    }
+
+    if (btnCerrar) btnCerrar.addEventListener('click', cerrarModal);
+
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) cerrarModal();
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('activo')) {
+            cerrarModal();
+        }
+    });
+});

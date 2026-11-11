@@ -265,11 +265,11 @@
             </div>
 
             <div class="projects-grid">
-                <div class="project-card js-tilt">
+                <div class="project-card js-tilt" data-proyecto="portafolio">
                     <div class="project-header">
-                        <a href="https://github.com/victorrios2010s15-cmyk/portafolio" target="_blank"><i class="fa-regular fa-folder-open folder-icon"></i></a>
+                        <i class="fa-regular fa-folder-open folder-icon"></i>
                         <div class="project-links">
-                            <a href="https://victorrios2010s15-cmyk.github.io/portafolio/" target="_blank"><i class="fa-brands fa-github"></i></a>
+                            <span class="btn-ver-mas"><i class="fa-solid fa-expand"></i> Vista previa</span>
                         </div>
                     </div>
                     <h3>Portafolio Personal</h3>
@@ -280,11 +280,11 @@
                     </div>
                 </div>
 
-                <div class="project-card js-tilt">
+                <div class="project-card js-tilt" data-proyecto="atajos">
                     <div class="project-header">
-                        <a href="https://github.com/victorrios2010s15-cmyk/atajos" target="_blank"><i class="fa-regular fa-folder-open folder-icon"></i></a>
+                        <i class="fa-regular fa-folder-open folder-icon"></i>
                         <div class="project-links">
-                            <a href="https://victorrios2010s15-cmyk.github.io/atajos/" target="_blank" title="Ver Código Fuente"><i class="fa-brands fa-github"></i></a>
+                            <span class="btn-ver-mas"><i class="fa-solid fa-expand"></i> Vista previa</span>
                         </div>
                     </div>
                     <h3>Atajos de Teclado</h3>
@@ -381,6 +381,42 @@
 <button id="btn-top" class="btn-back-to-top" title="Volver arriba">
     <i class="fa-solid fa-arrow-up"></i>
 </button>
+
+<!-- VENTANA MODAL PARA PROYECTOS -->
+<div id="modal-proyecto" class="modal-overlay">
+    <div class="modal-container">
+        <button id="cerrar-modal" class="btn-cerrar-modal" title="Cerrar ventana"><i class="fa-solid fa-xmark"></i></button>
+        
+        <div class="modal-body">
+            <div class="modal-preview-box">
+                <div class="modal-glow"></div>
+                <div id="modal-preview-content" class="modal-media-content">
+                    <!-- Imagen o vista generada dinámicamente -->
+                </div>
+            </div>
+
+            <div class="modal-info-box">
+                <span class="modal-badge">Detalles del Proyecto</span>
+                <h2 id="modal-titulo" class="modal-titulo">Título del Proyecto</h2>
+                <p id="modal-descripcion" class="modal-descripcion">Descripción extendida del proyecto.</p>
+
+                <div class="modal-seccion-tech">
+                    <h4>Tecnologías Utilizadas:</h4>
+                    <div id="modal-tags" class="project-tags"></div>
+                </div>
+
+                <div class="modal-acciones">
+                    <a id="modal-link-demo" href="#" target="_blank" class="modal-btn btn-demo">
+                        <i class="fa-solid fa-globe"></i> Ver Demo en Vivo
+                    </a>
+                    <a id="modal-link-github" href="#" target="_blank" class="modal-btn btn-github">
+                        <i class="fa-brands fa-github"></i> Ver Código Fuente
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="./script.js"></script>
 </body>
